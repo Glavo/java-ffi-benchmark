@@ -18,6 +18,37 @@ void JNICALL JavaCritical_benchmark_NoopBenchmark_noop_critical() {
     // do nothing
 }
 
+// ========= string convert =========
+
+void ffi_benchmark_accept_string(const char *str) {
+    // do nothing
+}
+
+static char *get_string_table[4096] = {0};
+
+const char *ffi_benchmark_get_string(jint length) {
+    if (length == 0) {
+        return "";
+    }
+
+    char *res = get_string_table[length];
+    if (res == NULL) {
+        res = malloc(length + 1);
+        for (int i = 0; i < length; ++i) {
+            res[i] = (char) ((i % 26) + 'A');
+        }
+        res[length] = '\0';
+        get_string_table[length] = res;
+    }
+
+    return res;
+}
+
+jstring Java_benchmark_StringConvertBenchmark_getString(JNIEnv *env, jclass cls, jint length) {
+    const char *str = ffi_benchmark_get_string(length);
+    return (*env)->NewStringUTF(env, str);
+}
+
 // ========= strlen =========
 
 long ffi_benchmark_strlen(const char *str) {

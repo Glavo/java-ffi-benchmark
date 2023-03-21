@@ -60,8 +60,6 @@ public class Helper {
     private static final Linker.Option[] TRIVIAL = {Linker.Option.isTrivial()};
     private static final Linker.Option[] NOT_TRIVIAL = {};
 
-
-
     static MethodHandle downcallHandle(String name, FunctionDescriptor fd, boolean trivial) {
         MemorySegment address = SymbolLookup.loaderLookup()
                 .find(name)

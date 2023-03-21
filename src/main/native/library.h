@@ -24,6 +24,22 @@ JNIEXPORT void JNICALL Java_benchmark_NoopBenchmark_noop
 
 JNIEXPORT void JavaCritical_benchmark_NoopBenchmark_noop_critical();
 
+// ========= string convert =========
+
+extern void ffi_benchmark_accept_string(const char *);
+
+extern const char *ffi_benchmark_get_string(jint);
+
+/*
+ * Class:     benchmark_StringConvertBenchmark
+ * Method:    getString
+ * Signature: (I)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_benchmark_StringConvertBenchmark_getString
+        (JNIEnv *, jclass, jint);
+
+// ========= strlen =========
+
 extern long ffi_benchmark_strlen(const char *);
 
 // ========= qsort =========
