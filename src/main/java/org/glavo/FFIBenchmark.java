@@ -70,7 +70,7 @@ public class FFIBenchmark {
     private static final Linker.Option[] TRIVIAL = {Linker.Option.isTrivial()};
     private static final Linker.Option[] NOT_TRIVIAL = {};
 
-    private static MethodHandle fun(String name, FunctionDescriptor fd, boolean trivial) {
+    private static MethodHandle downcallHandle(String name, FunctionDescriptor fd, boolean trivial) {
         MemorySegment address = SymbolLookup.loaderLookup()
                 .find(name)
                 .orElseThrow(() -> new AssertionError(name + " not found"));
@@ -83,8 +83,8 @@ public class FFIBenchmark {
     private static native void noop();
     private static native void noop_critical();
 
-    private static final MethodHandle noop = fun("ffi_benchmark_noop", FunctionDescriptor.ofVoid(), false);
-    private static final MethodHandle noopTrivial = fun("ffi_benchmark_noop", FunctionDescriptor.ofVoid(), true);
+    private static final MethodHandle noop = downcallHandle("ffi_benchmark_noop", FunctionDescriptor.ofVoid(), false);
+    private static final MethodHandle noopTrivial = downcallHandle("ffi_benchmark_noop", FunctionDescriptor.ofVoid(), true);
 
     @Benchmark
     public void noopJni() {
@@ -121,6 +121,6 @@ public class FFIBenchmark {
         noopTrivial.invokeExact();
     }
 
-    // ========= =========
+    // ========= gettimeofday =========
 
 }
