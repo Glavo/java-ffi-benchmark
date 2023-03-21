@@ -18,11 +18,23 @@ cmake --build .
 
 # run
 cd "$BENCHMARK_DIR"
+mkdir -p logs
+
+java_options=(
+  --enable-preview
+  --enable-native-access=ALL-UNNAMED
+  -Xms4g -Xmx4g
+  "-Dorg.glavo.benchmark.libpath=$BENCHMARK_DIR/src/main/native/cmake-build-release/libffi-benchmark.so"
+)
+
+benchmark_options=(
+  -tu ms -f 1 -gc true
+  # short benchmark
+  -wi 5 -w 5 -i 3 -r 3
+)
+
 $JAVA_HOME/bin/java \
-  --enable-preview \
-  --enable-native-access=ALL-UNNAMED \
-  -Xms1g -Xmx1g\
-  "-Dorg.glavo.benchmark.libpath=$BENCHMARK_DIR/src/main/native/cmake-build-release/libffi-benchmark.so" \
+  "${java_options[@]}" \
   -jar "$BENCHMARK_DIR/target/benchmarks.jar" \
-  -tu ms -wi 5 -w 3 -i 3 -r 3 -f 1 \
-  "$@"
+  "${benchmark_options[@]}" "$@" \
+  2>&1 | tee "$BENCHMARK_DIR/logs/benchmark-$(date '+%F_%H%M%S').log"
