@@ -54,7 +54,7 @@ public class StrlenBenchmark {
 
     String testString;
 
-    final Arena benchmarkArena = Arena.ofConfined();
+    Arena benchmarkArena;
     MemorySegment testStringSegment;
     long testStringAddress;
     com.sun.jna.Pointer testStringJnaPointer;
@@ -69,6 +69,9 @@ public class StrlenBenchmark {
             builder.append((char) ((random.nextInt() % 26) + 'A'));
         }
         testString = builder.toString();
+
+        benchmarkArena = Arena.ofConfined();
+
         testStringSegment = benchmarkArena.allocateUtf8String(testString);
         testStringAddress = testStringSegment.address();
         testStringJnaPointer = new com.sun.jna.Pointer(testStringAddress);
@@ -78,6 +81,7 @@ public class StrlenBenchmark {
     @TearDown
     public void cleanup() {
         benchmarkArena.close();
+        benchmarkArena = null;
 
         testStringSegment = null;
         testStringAddress = 0L;

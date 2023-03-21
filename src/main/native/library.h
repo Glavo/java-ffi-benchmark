@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *, void *);
+
 // ========= noop =========
 
 extern void ffi_benchmark_noop();
@@ -23,6 +25,16 @@ JNIEXPORT void JNICALL Java_benchmark_NoopBenchmark_noop
 JNIEXPORT void JavaCritical_benchmark_NoopBenchmark_noop_critical();
 
 extern long ffi_benchmark_strlen(const char *);
+
+// ========= qsort =========
+
+/*
+ * Class:     benchmark_QSortBenchmark
+ * Method:    qsort
+ * Signature: (JJLbenchmark/QSortBenchmark/JniComparator;)V
+ */
+JNIEXPORT void JNICALL Java_benchmark_QSortBenchmark_qsort
+        (JNIEnv *, jclass, jlong, jlong, jobject);
 
 #ifdef __cplusplus
 }

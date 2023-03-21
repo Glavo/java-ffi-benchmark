@@ -33,23 +33,34 @@ package benchmark;
 
 import com.sun.jna.Native;
 import jnr.ffi.LibraryLoader;
+import sun.misc.Unsafe;
 
-import java.lang.foreign.FunctionDescriptor;
-import java.lang.foreign.Linker;
-import java.lang.foreign.MemorySegment;
-import java.lang.foreign.SymbolLookup;
+import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
+import java.lang.reflect.Field;
 
 public class Helper {
 
     private static final String libpath = System.getProperty("org.glavo.benchmark.libpath");
 
+    static final Unsafe UNSAFE;
+
     static {
         System.load(libpath);
+
+        try {
+            Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
+            theUnsafe.setAccessible(true);
+            UNSAFE = (Unsafe) theUnsafe.get(null);
+        } catch (Throwable e) {
+            throw new AssertionError(e);
+        }
     }
 
     private static final Linker.Option[] TRIVIAL = {Linker.Option.isTrivial()};
     private static final Linker.Option[] NOT_TRIVIAL = {};
+
+
 
     static MethodHandle downcallHandle(String name, FunctionDescriptor fd, boolean trivial) {
         MemorySegment address = SymbolLookup.loaderLookup()
@@ -57,6 +68,10 @@ public class Helper {
                 .orElseThrow(() -> new AssertionError(name + " not found"));
 
         return Linker.nativeLinker().downcallHandle(address, fd, trivial ? TRIVIAL : NOT_TRIVIAL);
+    }
+
+    static MemorySegment upcallStub(MethodHandle target, FunctionDescriptor function, Arena arena) {
+        return Linker.nativeLinker().upcallStub(target, function, arena);
     }
 
     static <L extends com.sun.jna.Library> L loadJna(Class<L> clazz) {
