@@ -29,48 +29,29 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.glavo;
+package benchmark;
 
 import com.sun.jna.Native;
 import jnr.ffi.LibraryLoader;
-import org.openjdk.jmh.annotations.*;
 
-import java.lang.foreign.*;
+import java.lang.foreign.FunctionDescriptor;
+import java.lang.foreign.Linker;
+import java.lang.foreign.MemorySegment;
+import java.lang.foreign.SymbolLookup;
 import java.lang.invoke.MethodHandle;
-import java.util.concurrent.TimeUnit;
 
-@Warmup(iterations = 5, time = 3)
-@Measurement(iterations = 3, time = 3)
-@BenchmarkMode(Mode.Throughput)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Fork(value = 1)
-public class FFIBenchmark {
+public class Helper {
 
-    public interface NativeLib extends com.sun.jna.Library {
-        void ffi_benchmark_noop();
-    }
-
-    private static final class JnaDirect {
-        public static native void ffi_benchmark_noop();
-    }
-
-    private static final NativeLib jna;
-    private static final NativeLib jnr;
+    private static final String libpath = System.getProperty("org.glavo.benchmark.libpath");
 
     static {
-        var libpath = System.getProperty("org.glavo.benchmark.libpath");
-
         System.load(libpath);
-
-        jna = Native.load(libpath, NativeLib.class);
-        jnr = LibraryLoader.create(NativeLib.class).load(libpath);
-        Native.register(JnaDirect.class, "ffi-benchmark");
     }
 
     private static final Linker.Option[] TRIVIAL = {Linker.Option.isTrivial()};
     private static final Linker.Option[] NOT_TRIVIAL = {};
 
-    private static MethodHandle downcallHandle(String name, FunctionDescriptor fd, boolean trivial) {
+    static MethodHandle downcallHandle(String name, FunctionDescriptor fd, boolean trivial) {
         MemorySegment address = SymbolLookup.loaderLookup()
                 .find(name)
                 .orElseThrow(() -> new AssertionError(name + " not found"));
@@ -78,49 +59,15 @@ public class FFIBenchmark {
         return Linker.nativeLinker().downcallHandle(address, fd, trivial ? TRIVIAL : NOT_TRIVIAL);
     }
 
-    // ========= noop =========
-
-    private static native void noop();
-    private static native void noop_critical();
-
-    private static final MethodHandle noop = downcallHandle("ffi_benchmark_noop", FunctionDescriptor.ofVoid(), false);
-    private static final MethodHandle noopTrivial = downcallHandle("ffi_benchmark_noop", FunctionDescriptor.ofVoid(), true);
-
-    @Benchmark
-    public void noopJni() {
-        noop();
+    static <L extends com.sun.jna.Library> L loadJna(Class<L> clazz) {
+        return Native.load(libpath, clazz);
     }
 
-    // @Benchmark
-    public void noopJniCritical() {
-        noop_critical();
+    static <L> L loadJnr(Class<L> clazz) {
+        return LibraryLoader.create(clazz).load(libpath);
     }
 
-    @Benchmark
-    public void noopJna() {
-        jna.ffi_benchmark_noop();
+    static void registerJnaDirect(Class<?> clazz) {
+        Native.register(clazz, libpath);
     }
-
-    @Benchmark
-    public void noopJnaDirect() {
-        JnaDirect.ffi_benchmark_noop();
-    }
-
-    @Benchmark
-    public void noopJnr() {
-        jnr.ffi_benchmark_noop();
-    }
-
-    @Benchmark
-    public void noopPanama() throws Throwable {
-        noop.invokeExact();
-    }
-
-    @Benchmark
-    public void noopPanamaTrivial() throws Throwable {
-        noopTrivial.invokeExact();
-    }
-
-    // ========= gettimeofday =========
-
 }
