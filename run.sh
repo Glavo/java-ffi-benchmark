@@ -29,8 +29,8 @@ java_options=(
 
 benchmark_options=(
   -tu ms -f 1 -gc true
-  # short benchmark
-  -wi 5 -w 5 -i 3 -r 3
+  # -wi 5 -w 5 -i 3 -r 3 # short benchmark
+  -wi 7 -w 5 -i 5 -r 5 # full benchmark
 )
 
 $JAVA_HOME/bin/java \
