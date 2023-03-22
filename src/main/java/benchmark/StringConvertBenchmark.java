@@ -7,6 +7,7 @@ import java.lang.foreign.Arena;
 import java.lang.foreign.FunctionDescriptor;
 import java.lang.foreign.MemorySegment;
 import java.lang.invoke.MethodHandle;
+import java.util.function.Consumer;
 
 import static benchmark.Helper.downcallHandle;
 import static java.lang.foreign.ValueLayout.ADDRESS;
@@ -46,13 +47,17 @@ public class StringConvertBenchmark {
 
     String testString;
 
-    @Setup
-    public void setup() {
+    private static String testStr(int length) {
         StringBuilder builder = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
             builder.append((char) ((i % 26) + 'A'));
         }
-        testString = builder.toString();
+         return builder.toString();
+    }
+
+    @Setup
+    public void setup() {
+        testString = testStr(length);
     }
 
     @Benchmark
@@ -112,5 +117,57 @@ public class StringConvertBenchmark {
     @Benchmark
     public String getStringFromNativePanamaTrivial() throws Throwable {
         return ((MemorySegment) getStringTrivial.invokeExact(length)).reinterpret(Long.MAX_VALUE).getUtf8String(0);
+    }
+
+    public static void main(String[] args) throws Throwable {
+        int[] lengths = {0, 16, 64, 256, 1024, 4096};
+        for (int length : lengths) {
+            System.out.println("# length = " + length);
+
+            StringConvertBenchmark benchmark = new StringConvertBenchmark();
+            benchmark.length = length;
+
+            benchmark.setup();
+
+            System.out.println("=> Running passStringToNativeJna");
+            benchmark.passStringToNativeJna();
+
+            System.out.println("=> Running passStringToNativeJnaDirect");
+            benchmark.passStringToNativeJnaDirect();
+
+            System.out.println("=> Running passStringToNativeJnr");
+            benchmark.passStringToNativeJnr();
+
+            System.out.println("=> Running passStringToNativePanama");
+            benchmark.passStringToNativePanama();
+
+            System.out.println("=> Running passStringToNativePanamaTrivial");
+            benchmark.passStringToNativePanamaTrivial();
+
+            String expect = testStr(length);
+            Consumer<String> checker = v -> {
+                if (!expect.equals(v)) {
+                    throw new AssertionError("expect: " + expect + ", actual: " + v);
+                }
+            };
+
+            System.out.println("=> Running getStringFromNativeJni");
+            checker.accept(benchmark.getStringFromNativeJni());
+
+            System.out.println("=> Running getStringFromNativeJna");
+            checker.accept(benchmark.getStringFromNativeJna());
+
+            System.out.println("=> Running getStringFromNativeJnaDirect");
+            checker.accept(benchmark.getStringFromNativeJnaDirect());
+
+            System.out.println("=> Running getStringFromNativeJnr");
+            checker.accept(benchmark.getStringFromNativeJnr());
+
+            System.out.println("=> Running getStringFromNativePanama");
+            checker.accept(benchmark.getStringFromNativePanama());
+
+            System.out.println("=> Running getStringFromNativePanamaTrivial");
+            checker.accept(benchmark.getStringFromNativePanamaTrivial());
+        }
     }
 }

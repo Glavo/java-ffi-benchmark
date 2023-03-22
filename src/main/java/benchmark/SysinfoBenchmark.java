@@ -1,12 +1,14 @@
 package benchmark;
 
 import com.sun.jna.Library;
+import com.sun.jna.platform.linux.LibC;
 import jnr.ffi.annotations.Out;
 import org.openjdk.jmh.annotations.*;
 
 import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.util.function.Consumer;
 
 @State(Scope.Benchmark)
 public class SysinfoBenchmark {
@@ -145,5 +147,48 @@ public class SysinfoBenchmark {
     public int getMemUnitPanamaTrivialNoAllocate() throws Throwable {
         getMemUnitTrivial.invokeExact(info);
         return (int) memUnitHandle.get(info);
+    }
+
+    public static void main(String[] args) throws Throwable {
+        var info = new com.sun.jna.platform.linux.LibC.Sysinfo();
+        LibC.INSTANCE.sysinfo(info);
+
+        int memUnit = info.mem_unit;
+        Consumer<Integer> checker = v -> {
+            if (v != memUnit) {
+                throw new AssertionError("expect: " + memUnit + ", actual: " + v);
+            }
+        };
+
+        SysinfoBenchmark benchmark = new SysinfoBenchmark();
+        benchmark.setup();
+
+        try {
+            System.out.println("=> Running getMemUnitJni");
+            checker.accept(benchmark.getMemUnitJni());
+
+            System.out.println("=> Running getMemUnitJna");
+            checker.accept(benchmark.getMemUnitJna());
+
+            System.out.println("=> Running getMemUnitJnaDirect");
+            checker.accept(benchmark.getMemUnitJnaDirect());
+
+            System.out.println("=> Running getMemUnitJnr");
+            checker.accept(benchmark.getMemUnitJnr());
+
+            System.out.println("=> Running getMemUnitPanama");
+            checker.accept(benchmark.getMemUnitPanama());
+
+            System.out.println("=> Running getMemUnitPanamaTrivial");
+            checker.accept(benchmark.getMemUnitPanamaTrivial());
+
+            System.out.println("=> Running getMemUnitPanamaNoAllocate");
+            checker.accept(benchmark.getMemUnitPanamaNoAllocate());
+
+            System.out.println("=> Running getMemUnitPanamaTrivialNoAllocate");
+            checker.accept(benchmark.getMemUnitPanamaTrivialNoAllocate());
+        } finally {
+            benchmark.cleanup();
+        }
     }
 }

@@ -36,7 +36,7 @@ public class NoopBenchmark {
         noop();
     }
 
-    @Benchmark
+    // @Benchmark
     public void noopJniCritical() {
         noop_critical();
     }
@@ -64,5 +64,28 @@ public class NoopBenchmark {
     @Benchmark
     public void noopPanamaTrivial() throws Throwable {
         noopTrivial.invokeExact();
+    }
+
+    public static void main(String[] args) throws Throwable {
+        NoopBenchmark benchmark = new NoopBenchmark();
+
+        System.out.println("=> Running noopJni");
+        benchmark.noopJni();
+        // benchmark.noopJniCritical();
+
+        System.out.println("=> Running noopJna");
+        benchmark.noopJna();
+
+        System.out.println("=> Running noopJnaDirect");
+        benchmark.noopJnaDirect();
+
+        System.out.println("=> Running noopJnr");
+        benchmark.noopJnr();
+
+        System.out.println("=> Running noopPanama");
+        benchmark.noopPanama();
+
+        System.out.println("=> Running noopPanamaTrivial");
+        benchmark.noopPanamaTrivial();
     }
 }

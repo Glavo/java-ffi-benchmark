@@ -85,8 +85,7 @@ public class QSortBenchmark {
         }
     }
 
-    //@Param({"0", "32", "1024"})
-    @Param({"0", "32"})
+    @Param({"0", "16", "32", "64"})
     long length;
 
     Arena benchmarkArena;
@@ -149,6 +148,54 @@ public class QSortBenchmark {
     public void qsortPanamaSlow() throws Throwable {
         try (Arena arena = Arena.ofConfined()) {
             qsort.invokeExact(segment, length, qsortComparator(arena));
+        }
+    }
+
+    private void assertStatus() {
+        for (int i = 0; i < length; i++) {
+            if (segment.get(JAVA_INT, i * 4L) != i) {
+                throw new AssertionError("Invalid value at index " + i);
+            }
+        }
+    }
+
+    public static void main(String[] args) throws Throwable {
+        int[] lengths = {0, 16, 32, 64};
+
+        for (int length : lengths) {
+            System.out.println("# length = " + length);
+
+            QSortBenchmark benchmark = new QSortBenchmark();
+            benchmark.length = length;
+            benchmark.setup();
+
+            try {
+                System.out.println("=> Running qsortJni");
+                benchmark.qsortJni();
+                benchmark.assertStatus();
+
+                System.out.println("=> Running qsortJna");
+                benchmark.qsortJna();
+                benchmark.assertStatus();
+
+                System.out.println("=> Running qsortJnaDirect");
+                benchmark.qsortJnaDirect();
+                benchmark.assertStatus();
+
+                System.out.println("=> Running qsortJnr");
+                benchmark.qsortJnr();
+                benchmark.assertStatus();
+
+                System.out.println("=> Running qsortPanama");
+                benchmark.qsortPanama();
+                benchmark.assertStatus();
+
+                System.out.println("=> Running qsortPanamaSlow");
+                benchmark.qsortPanamaSlow();
+                benchmark.assertStatus();
+            } finally {
+                benchmark.cleanup();
+            }
         }
     }
 }
