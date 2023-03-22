@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <sys/sysinfo.h>
+
 #include "library.h"
 
 // ========= noop =========
@@ -54,6 +56,19 @@ jstring Java_benchmark_StringConvertBenchmark_getString(JNIEnv *env, jclass cls,
 long ffi_benchmark_strlen(const char *str) {
     return strlen(str);
 }
+
+// ========= sysinfo =========
+
+void ffi_benchmark_sysinfo(struct sysinfo *info) {
+    sysinfo(info);
+}
+
+jint Java_benchmark_SysinfoBenchmark_getMemUnit(JNIEnv *env, jclass cls) {
+    struct sysinfo info;
+    sysinfo(&info);
+    return (jint) info.mem_unit;
+}
+
 
 // ========= qsort =========
 

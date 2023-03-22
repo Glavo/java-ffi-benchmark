@@ -72,6 +72,12 @@ THE POSSIBILITY OF SUCH DAMAGE.
             <artifactId>jnr-ffi</artifactId>
             <version>2.2.13</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.jnr/jnr-posix -->
+        <dependency>
+            <groupId>com.github.jnr</groupId>
+            <artifactId>jnr-posix</artifactId>
+            <version>3.1.16</version>
+        </dependency>
     </dependencies>
 
     <properties>

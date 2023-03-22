@@ -42,6 +42,19 @@ JNIEXPORT jstring JNICALL Java_benchmark_StringConvertBenchmark_getString
 
 extern long ffi_benchmark_strlen(const char *);
 
+// ========= sysinfo =========
+
+extern void ffi_benchmark_sysinfo(struct sysinfo *info);
+
+/*
+ * Class:     benchmark_SysinfoBenchmark
+ * Method:    getMemUnit
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_benchmark_SysinfoBenchmark_getMemUnit
+        (JNIEnv *, jclass);
+
+
 // ========= qsort =========
 
 /*
