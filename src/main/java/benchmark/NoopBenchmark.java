@@ -27,6 +27,7 @@ public class NoopBenchmark {
 
     private static final NativeLib JNA = Helper.loadJna(NativeLib.class);
     private static final NativeLib JNR = Helper.loadJnr(NativeLib.class);
+    private static final NativeLib JNR_IGNORE_ERROR = Helper.loadJnrIgnoreError(NativeLib.class);
 
     private static final MethodHandle noop = downcallHandle("ffi_benchmark_noop", FunctionDescriptor.ofVoid(), false);
     private static final MethodHandle noopTrivial = downcallHandle("ffi_benchmark_noop", FunctionDescriptor.ofVoid(), true);
@@ -57,6 +58,11 @@ public class NoopBenchmark {
     }
 
     @Benchmark
+    public void noopJnrIgnoreError() {
+        JNR_IGNORE_ERROR.ffi_benchmark_noop();
+    }
+
+    @Benchmark
     public void noopPanama() throws Throwable {
         noop.invokeExact();
     }
@@ -71,6 +77,7 @@ public class NoopBenchmark {
 
         System.out.println("=> Running noopJni");
         benchmark.noopJni();
+
         // benchmark.noopJniCritical();
 
         System.out.println("=> Running noopJna");
@@ -81,6 +88,9 @@ public class NoopBenchmark {
 
         System.out.println("=> Running noopJnr");
         benchmark.noopJnr();
+
+        System.out.println("=> Running noopJnrIgnoreError");
+        benchmark.noopJnrIgnoreError();
 
         System.out.println("=> Running noopPanama");
         benchmark.noopPanama();

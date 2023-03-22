@@ -35,6 +35,7 @@ public class StringConvertBenchmark {
 
     private static final NativeLib JNA = Helper.loadJna(NativeLib.class);
     private static final NativeLib JNR = Helper.loadJnr(NativeLib.class);
+    private static final NativeLib JNR_IGNORE_ERROR = Helper.loadJnrIgnoreError(NativeLib.class);
 
     private static final MethodHandle acceptString = downcallHandle("ffi_benchmark_accept_string", FunctionDescriptor.ofVoid(ADDRESS), false);
     private static final MethodHandle acceptStringTrivial = downcallHandle("ffi_benchmark_accept_string", FunctionDescriptor.ofVoid(ADDRESS), true);
@@ -76,6 +77,11 @@ public class StringConvertBenchmark {
     }
 
     @Benchmark
+    public void passStringToNativeJnrIgnoreError() {
+        JNR_IGNORE_ERROR.ffi_benchmark_accept_string(testString);
+    }
+
+    @Benchmark
     public void passStringToNativePanama() throws Throwable {
         try (Arena arena = Arena.ofConfined()) {
             acceptString.invokeExact(arena.allocateUtf8String(testString));
@@ -110,6 +116,11 @@ public class StringConvertBenchmark {
     }
 
     @Benchmark
+    public String getStringFromNativeJnrIgnoreError() {
+        return JNR_IGNORE_ERROR.ffi_benchmark_get_string(length);
+    }
+
+    @Benchmark
     public String getStringFromNativePanama() throws Throwable {
         return ((MemorySegment) getString.invokeExact(length)).reinterpret(Long.MAX_VALUE).getUtf8String(0);
     }
@@ -138,6 +149,9 @@ public class StringConvertBenchmark {
             System.out.println("=> Running passStringToNativeJnr");
             benchmark.passStringToNativeJnr();
 
+            System.out.println("=> Running passStringToNativeJnrIgnoreError");
+            benchmark.passStringToNativeJnrIgnoreError();
+
             System.out.println("=> Running passStringToNativePanama");
             benchmark.passStringToNativePanama();
 
@@ -162,6 +176,9 @@ public class StringConvertBenchmark {
 
             System.out.println("=> Running getStringFromNativeJnr");
             checker.accept(benchmark.getStringFromNativeJnr());
+
+            System.out.println("=> Running getStringFromNativeJnrIgnoreError");
+            checker.accept(benchmark.getStringFromNativeJnrIgnoreError());
 
             System.out.println("=> Running getStringFromNativePanama");
             checker.accept(benchmark.getStringFromNativePanama());

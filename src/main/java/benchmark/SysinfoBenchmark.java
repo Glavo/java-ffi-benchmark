@@ -69,6 +69,7 @@ public class SysinfoBenchmark {
 
     private static final JnaLib JNA = Helper.loadJna(JnaLib.class);
     private static final JnrLib JNR = Helper.loadJnr(JnrLib.class);
+    private static final JnrLib JNR_IGNORE_ERROR = Helper.loadJnrIgnoreError(JnrLib.class);
 
     private static final MethodHandle getMemUnit =
             Helper.downcallHandle("ffi_benchmark_sysinfo", FunctionDescriptor.ofVoid(ValueLayout.ADDRESS.withTargetLayout(sysinfoLayout)), false);
@@ -116,6 +117,13 @@ public class SysinfoBenchmark {
     public int getMemUnitJnr() {
         var info = new JnrSysInfo(jnr.ffi.Runtime.getSystemRuntime());
         JNR.ffi_benchmark_sysinfo(info);
+        return info.mem_unit.intValue();
+    }
+
+    @Benchmark
+    public int getMemUnitJnrIgnoreError() {
+        var info = new JnrSysInfo(jnr.ffi.Runtime.getSystemRuntime());
+        JNR_IGNORE_ERROR.ffi_benchmark_sysinfo(info);
         return info.mem_unit.intValue();
     }
 
@@ -175,6 +183,9 @@ public class SysinfoBenchmark {
 
             System.out.println("=> Running getMemUnitJnr");
             checker.accept(benchmark.getMemUnitJnr());
+
+            System.out.println("=> Running getMemUnitJnrIgnoreError");
+            checker.accept(benchmark.getMemUnitJnrIgnoreError());
 
             System.out.println("=> Running getMemUnitPanama");
             checker.accept(benchmark.getMemUnitPanama());

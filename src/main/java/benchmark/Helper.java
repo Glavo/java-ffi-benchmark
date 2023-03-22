@@ -33,11 +33,13 @@ package benchmark;
 
 import com.sun.jna.Native;
 import jnr.ffi.LibraryLoader;
+import jnr.ffi.LibraryOption;
 import sun.misc.Unsafe;
 
 import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Field;
+import java.util.Map;
 
 public class Helper {
 
@@ -78,6 +80,14 @@ public class Helper {
 
     static <L> L loadJnr(Class<L> clazz) {
         return LibraryLoader.create(clazz).load(libpath);
+    }
+
+    static <L> L loadJnrIgnoreError(Class<L> clazz) {
+        return LibraryLoader.loadLibrary(
+                clazz,
+                Map.of(LibraryOption.IgnoreError, true),
+                libpath
+        );
     }
 
     static void registerJnaDirect(Class<?> clazz) {

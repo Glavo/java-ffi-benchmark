@@ -55,6 +55,7 @@ public class QSortBenchmark {
 
     private static final JnaLib JNA = Helper.loadJna(JnaLib.class);
     private static final JnrLib JNR = Helper.loadJnr(JnrLib.class);
+    private static final JnrLib JNR_IGNORE_ERROR = Helper.loadJnrIgnoreError(JnrLib.class);
 
     private static native void qsort(long address, long elements, JniComparator comparator);
 
@@ -140,6 +141,11 @@ public class QSortBenchmark {
     }
 
     @Benchmark
+    public void qsortJnrIgnoreError() {
+        JNR_IGNORE_ERROR.ffi_benchmark_qsort(jnrPointer, length, JnrLib.QSortComparator.INSTANCE);
+    }
+
+    @Benchmark
     public void qsortPanama() throws Throwable {
         qsort.invokeExact(segment, length, qsortComparator);
     }
@@ -184,6 +190,10 @@ public class QSortBenchmark {
 
                 System.out.println("=> Running qsortJnr");
                 benchmark.qsortJnr();
+                benchmark.assertStatus();
+
+                System.out.println("=> Running qsortJnrIgnoreError");
+                benchmark.qsortJnrIgnoreError();
                 benchmark.assertStatus();
 
                 System.out.println("=> Running qsortPanama");
