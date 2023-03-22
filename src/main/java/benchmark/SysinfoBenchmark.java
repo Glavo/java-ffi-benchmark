@@ -2,14 +2,13 @@ package benchmark;
 
 import com.sun.jna.Library;
 import jnr.ffi.annotations.Out;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.annotations.*;
 
 import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
 
+@State(Scope.Benchmark)
 public class SysinfoBenchmark {
 
     private static final MemoryLayout sysinfoLayout = MemoryLayout.structLayout(
