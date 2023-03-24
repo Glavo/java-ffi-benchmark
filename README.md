@@ -25,6 +25,8 @@ Memory: Dual Channel DDR4 3200 MT/s
 System: Ubuntu 22.04.1 (Linux 5.15.0-52-generic)
 C Compiler: GCC 9.4.0
 
+The original results of all the tests below can be found in the [data](./data) directory, where the JMH run logs are stored.
+
 ### `NoopBenchmark`
 
 This benchmark calls a C function that has no action.
@@ -264,7 +266,3 @@ Result:
 
 In this benchmark, the performance of Panama is about 3.5~4 times that of JNI.
 This shows the most advantageous scenario of Panama: calling Java callback function in C.
-
-## Raw data
-
-If you care about the raw data for the above results, please check out the [data](./data) folder, which contains JMH's raw logs.
