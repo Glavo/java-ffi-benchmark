@@ -101,7 +101,7 @@ However, Java does not support local variables of struct type, so we need to all
 
 ```java
 @Benchmark
-public int getMemUnit() throws Throwable {
+public int getMemUnitPanama() throws Throwable {
     try (Arena arena = Arena.ofConfined()) {
         MemorySegment info = arena.allocate(sysinfoLayout);
         getMemUnit.invokeExact(info);
@@ -173,7 +173,7 @@ For Panama, we need to use the `MemorySegment::getUtf8String` method:
 
 ```java
 @Benchmark
-public String getStringFromNative() throws Throwable {
+public String getStringFromNativePanama() throws Throwable {
     return ((MemorySegment) getString.invokeExact(length)).reinterpret(Long.MAX_VALUE).getUtf8String(0);
 }
 ```
@@ -195,14 +195,14 @@ I have investigated Panama, JNR, and JNA, and they are all converted in a simila
 
 The biggest difference between them maybe that Panama and JNR use loop detection NULL terminators in Java, 
 while JNA uses the C standard library function `strlen`.
-Repeatedly reading native memory may hinder JVM optimization.
+Perhaps this is the reason why they are so slow.
 
 ## `QSortBenchmark`
 
 This benchmark call the C function `qsort` with a Java method as the comparator. 
 Its purpose is to observe the performance of calling a Java callback function in C.
 
-JNA and JNR provide out of the box delegation features that are very easy to use.
+JNA and JNR provide out of the box delegation features.
 
 The following code uses JNA as a demonstration, and the JNR based code is very similar to it:
 ```java
@@ -250,7 +250,7 @@ void JNICALL Java_benchmark_QSortBenchmark_qsort(JNIEnv *env, jclass c, jlong ad
 }
 ```
 
-The Java implementation of the callback function uses `sun.misc.Unsafe` to obtain the value through the address.
+The Java implementation of the callback function uses `sun.misc.Unsafe` to get the value from address.
 
 ```java
 static final Unsafe UNSAFE = /*...*/;
