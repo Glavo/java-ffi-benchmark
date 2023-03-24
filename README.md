@@ -1,6 +1,6 @@
 # Java FFI Benchmark
 
-A series of JMH micro benchmarks that compare the performance of invoking foreign functions from Panama, [JNA](https://github.com/java-native-access/jna), [JNR](https://github.com/jnr/jnr-ffi, and JNI.
+A series of JMH micro benchmarks that compare the performance of invoking foreign functions from Panama, [JNA](https://github.com/java-native-access/jna), [JNR](https://github.com/jnr/jnr-ffi), and JNI.
 
 This benchmark is based on **Java 21**. I built JDK based on [openjdk/panama-foreign@dbddb9e](https://github.com/openjdk/panama-foreign/commit/dbddb9e2b74dd71e54dbb296cdc2bb4375d872e4), you can get the JDK I built from [here]().
 
