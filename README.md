@@ -10,8 +10,6 @@ Here are four benchmarks:
   This benchmark measures the basic overhead of invoking foreign functions.
 * `SysinfoBenchmark`: Call the Linux system function `sysinfo` and get the `mem_unit` from the result.
   This benchmark measures the overhead of allocating structures and fetching field values.
-  In this benchmark, we need to pass a struct pointer to the system function to receive the result,
-  and then get the value of the `mem_unit` field of the struct.
 * `StringConvertBenchmark`: Convert Java strings to C-style strings and pass them to foreign functions, 
   and get C-style strings from foreign functions and convert them to Java strings.
 * `QSortBenchmark`: Call the C function `qsort` with a Java method as the comparator.
