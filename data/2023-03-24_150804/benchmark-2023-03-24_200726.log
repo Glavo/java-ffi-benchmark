@@ -1,0 +1,1311 @@
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJna
+# Parameters: (length = 0)
+
+# Run progress: 0.00% complete, ETA 00:36:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 2274.473 ops/ms
+# Warmup Iteration   2: 2307.541 ops/ms
+# Warmup Iteration   3: 2349.525 ops/ms
+# Warmup Iteration   4: 2349.952 ops/ms
+# Warmup Iteration   5: 2348.035 ops/ms
+# Warmup Iteration   6: 2351.271 ops/ms
+# Warmup Iteration   7: 2348.151 ops/ms
+Iteration   1: 2349.799 ops/ms
+Iteration   2: 2351.053 ops/ms
+Iteration   3: 2345.487 ops/ms
+Iteration   4: 2344.803 ops/ms
+Iteration   5: 2347.669 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJna":
+  2347.762 ±(99.9%) 10.354 ops/ms [Average]
+  (min, avg, max) = (2344.803, 2347.762, 2351.053), stdev = 2.689
+  CI (99.9%): [2337.408, 2358.116] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJna
+# Parameters: (length = 8)
+
+# Run progress: 2.78% complete, ETA 00:39:32
+# Fork: 1 of 1
+# Warmup Iteration   1: 130.282 ops/ms
+# Warmup Iteration   2: 135.416 ops/ms
+# Warmup Iteration   3: 136.813 ops/ms
+# Warmup Iteration   4: 136.871 ops/ms
+# Warmup Iteration   5: 136.956 ops/ms
+# Warmup Iteration   6: 136.958 ops/ms
+# Warmup Iteration   7: 136.723 ops/ms
+Iteration   1: 136.052 ops/ms
+Iteration   2: 136.526 ops/ms
+Iteration   3: 137.040 ops/ms
+Iteration   4: 136.805 ops/ms
+Iteration   5: 136.860 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJna":
+  136.657 ±(99.9%) 1.483 ops/ms [Average]
+  (min, avg, max) = (136.052, 136.657, 137.040), stdev = 0.385
+  CI (99.9%): [135.174, 138.139] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJna
+# Parameters: (length = 16)
+
+# Run progress: 5.56% complete, ETA 00:38:24
+# Fork: 1 of 1
+# Warmup Iteration   1: 49.091 ops/ms
+# Warmup Iteration   2: 49.367 ops/ms
+# Warmup Iteration   3: 50.569 ops/ms
+# Warmup Iteration   4: 50.529 ops/ms
+# Warmup Iteration   5: 50.752 ops/ms
+# Warmup Iteration   6: 50.552 ops/ms
+# Warmup Iteration   7: 50.742 ops/ms
+Iteration   1: 50.153 ops/ms
+Iteration   2: 50.756 ops/ms
+Iteration   3: 50.212 ops/ms
+Iteration   4: 50.305 ops/ms
+Iteration   5: 50.901 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJna":
+  50.465 ±(99.9%) 1.309 ops/ms [Average]
+  (min, avg, max) = (50.153, 50.465, 50.901), stdev = 0.340
+  CI (99.9%): [49.156, 51.775] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJna
+# Parameters: (length = 32)
+
+# Run progress: 8.33% complete, ETA 00:37:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 20.953 ops/ms
+# Warmup Iteration   2: 21.278 ops/ms
+# Warmup Iteration   3: 21.585 ops/ms
+# Warmup Iteration   4: 21.533 ops/ms
+# Warmup Iteration   5: 21.618 ops/ms
+# Warmup Iteration   6: 21.579 ops/ms
+# Warmup Iteration   7: 21.619 ops/ms
+Iteration   1: 21.373 ops/ms
+Iteration   2: 21.397 ops/ms
+Iteration   3: 21.393 ops/ms
+Iteration   4: 21.511 ops/ms
+Iteration   5: 21.554 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJna":
+  21.446 ±(99.9%) 0.313 ops/ms [Average]
+  (min, avg, max) = (21.373, 21.446, 21.554), stdev = 0.081
+  CI (99.9%): [21.133, 21.759] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJna
+# Parameters: (length = 64)
+
+# Run progress: 11.11% complete, ETA 00:36:08
+# Fork: 1 of 1
+# Warmup Iteration   1: 8.926 ops/ms
+# Warmup Iteration   2: 8.963 ops/ms
+# Warmup Iteration   3: 9.151 ops/ms
+# Warmup Iteration   4: 9.130 ops/ms
+# Warmup Iteration   5: 9.114 ops/ms
+# Warmup Iteration   6: 9.095 ops/ms
+# Warmup Iteration   7: 9.139 ops/ms
+Iteration   1: 9.142 ops/ms
+Iteration   2: 9.093 ops/ms
+Iteration   3: 9.101 ops/ms
+Iteration   4: 9.085 ops/ms
+Iteration   5: 9.092 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJna":
+  9.102 ±(99.9%) 0.087 ops/ms [Average]
+  (min, avg, max) = (9.085, 9.102, 9.142), stdev = 0.023
+  CI (99.9%): [9.015, 9.190] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJna
+# Parameters: (length = 128)
+
+# Run progress: 13.89% complete, ETA 00:35:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 3.799 ops/ms
+# Warmup Iteration   2: 3.890 ops/ms
+# Warmup Iteration   3: 3.945 ops/ms
+# Warmup Iteration   4: 3.934 ops/ms
+# Warmup Iteration   5: 3.938 ops/ms
+# Warmup Iteration   6: 3.944 ops/ms
+# Warmup Iteration   7: 3.888 ops/ms
+Iteration   1: 3.894 ops/ms
+Iteration   2: 3.891 ops/ms
+Iteration   3: 3.917 ops/ms
+Iteration   4: 3.897 ops/ms
+Iteration   5: 3.887 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJna":
+  3.897 ±(99.9%) 0.045 ops/ms [Average]
+  (min, avg, max) = (3.887, 3.897, 3.917), stdev = 0.012
+  CI (99.9%): [3.852, 3.942] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnaDirect
+# Parameters: (length = 0)
+
+# Run progress: 16.67% complete, ETA 00:33:52
+# Fork: 1 of 1
+# Warmup Iteration   1: 4940.579 ops/ms
+# Warmup Iteration   2: 4974.995 ops/ms
+# Warmup Iteration   3: 4956.484 ops/ms
+# Warmup Iteration   4: 4965.095 ops/ms
+# Warmup Iteration   5: 4973.854 ops/ms
+# Warmup Iteration   6: 4981.531 ops/ms
+# Warmup Iteration   7: 4956.282 ops/ms
+Iteration   1: 4975.471 ops/ms
+Iteration   2: 4937.478 ops/ms
+Iteration   3: 4974.843 ops/ms
+Iteration   4: 4952.838 ops/ms
+Iteration   5: 4962.347 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnaDirect":
+  4960.595 ±(99.9%) 61.548 ops/ms [Average]
+  (min, avg, max) = (4937.478, 4960.595, 4975.471), stdev = 15.984
+  CI (99.9%): [4899.047, 5022.143] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnaDirect
+# Parameters: (length = 8)
+
+# Run progress: 19.44% complete, ETA 00:32:45
+# Fork: 1 of 1
+# Warmup Iteration   1: 186.892 ops/ms
+# Warmup Iteration   2: 187.403 ops/ms
+# Warmup Iteration   3: 189.824 ops/ms
+# Warmup Iteration   4: 189.423 ops/ms
+# Warmup Iteration   5: 189.925 ops/ms
+# Warmup Iteration   6: 189.521 ops/ms
+# Warmup Iteration   7: 189.493 ops/ms
+Iteration   1: 189.304 ops/ms
+Iteration   2: 189.607 ops/ms
+Iteration   3: 189.170 ops/ms
+Iteration   4: 189.615 ops/ms
+Iteration   5: 189.723 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnaDirect":
+  189.484 ±(99.9%) 0.904 ops/ms [Average]
+  (min, avg, max) = (189.170, 189.484, 189.723), stdev = 0.235
+  CI (99.9%): [188.580, 190.388] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnaDirect
+# Parameters: (length = 16)
+
+# Run progress: 22.22% complete, ETA 00:31:37
+# Fork: 1 of 1
+# Warmup Iteration   1: 73.150 ops/ms
+# Warmup Iteration   2: 73.332 ops/ms
+# Warmup Iteration   3: 74.065 ops/ms
+# Warmup Iteration   4: 73.641 ops/ms
+# Warmup Iteration   5: 73.794 ops/ms
+# Warmup Iteration   6: 73.821 ops/ms
+# Warmup Iteration   7: 73.934 ops/ms
+Iteration   1: 74.071 ops/ms
+Iteration   2: 73.920 ops/ms
+Iteration   3: 74.121 ops/ms
+Iteration   4: 74.105 ops/ms
+Iteration   5: 73.960 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnaDirect":
+  74.036 ±(99.9%) 0.347 ops/ms [Average]
+  (min, avg, max) = (73.920, 74.036, 74.121), stdev = 0.090
+  CI (99.9%): [73.688, 74.383] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnaDirect
+# Parameters: (length = 32)
+
+# Run progress: 25.00% complete, ETA 00:30:29
+# Fork: 1 of 1
+# Warmup Iteration   1: 29.730 ops/ms
+# Warmup Iteration   2: 29.761 ops/ms
+# Warmup Iteration   3: 30.035 ops/ms
+# Warmup Iteration   4: 30.117 ops/ms
+# Warmup Iteration   5: 30.149 ops/ms
+# Warmup Iteration   6: 30.143 ops/ms
+# Warmup Iteration   7: 29.976 ops/ms
+Iteration   1: 30.090 ops/ms
+Iteration   2: 30.122 ops/ms
+Iteration   3: 30.147 ops/ms
+Iteration   4: 30.130 ops/ms
+Iteration   5: 30.180 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnaDirect":
+  30.134 ±(99.9%) 0.128 ops/ms [Average]
+  (min, avg, max) = (30.090, 30.134, 30.180), stdev = 0.033
+  CI (99.9%): [30.006, 30.262] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnaDirect
+# Parameters: (length = 64)
+
+# Run progress: 27.78% complete, ETA 00:29:21
+# Fork: 1 of 1
+# Warmup Iteration   1: 12.593 ops/ms
+# Warmup Iteration   2: 12.679 ops/ms
+# Warmup Iteration   3: 12.813 ops/ms
+# Warmup Iteration   4: 12.795 ops/ms
+# Warmup Iteration   5: 12.818 ops/ms
+# Warmup Iteration   6: 12.827 ops/ms
+# Warmup Iteration   7: 12.808 ops/ms
+Iteration   1: 12.763 ops/ms
+Iteration   2: 12.815 ops/ms
+Iteration   3: 12.791 ops/ms
+Iteration   4: 12.816 ops/ms
+Iteration   5: 12.804 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnaDirect":
+  12.798 ±(99.9%) 0.085 ops/ms [Average]
+  (min, avg, max) = (12.763, 12.798, 12.816), stdev = 0.022
+  CI (99.9%): [12.713, 12.883] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnaDirect
+# Parameters: (length = 128)
+
+# Run progress: 30.56% complete, ETA 00:28:13
+# Fork: 1 of 1
+# Warmup Iteration   1: 5.373 ops/ms
+# Warmup Iteration   2: 5.358 ops/ms
+# Warmup Iteration   3: 5.422 ops/ms
+# Warmup Iteration   4: 5.439 ops/ms
+# Warmup Iteration   5: 5.450 ops/ms
+# Warmup Iteration   6: 5.432 ops/ms
+# Warmup Iteration   7: 5.424 ops/ms
+Iteration   1: 5.430 ops/ms
+Iteration   2: 5.432 ops/ms
+Iteration   3: 5.433 ops/ms
+Iteration   4: 5.422 ops/ms
+Iteration   5: 5.443 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnaDirect":
+  5.432 ±(99.9%) 0.028 ops/ms [Average]
+  (min, avg, max) = (5.422, 5.432, 5.443), stdev = 0.007
+  CI (99.9%): [5.404, 5.460] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJni
+# Parameters: (length = 0)
+
+# Run progress: 33.33% complete, ETA 00:27:06
+# Fork: 1 of 1
+# Warmup Iteration   1: 107989.121 ops/ms
+# Warmup Iteration   2: 108375.802 ops/ms
+# Warmup Iteration   3: 109424.041 ops/ms
+# Warmup Iteration   4: 109411.527 ops/ms
+# Warmup Iteration   5: 109292.897 ops/ms
+# Warmup Iteration   6: 109379.685 ops/ms
+# Warmup Iteration   7: 109432.125 ops/ms
+Iteration   1: 109438.244 ops/ms
+Iteration   2: 109447.618 ops/ms
+Iteration   3: 109432.319 ops/ms
+Iteration   4: 109429.355 ops/ms
+Iteration   5: 109458.636 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJni":
+  109441.234 ±(99.9%) 46.092 ops/ms [Average]
+  (min, avg, max) = (109429.355, 109441.234, 109458.636), stdev = 11.970
+  CI (99.9%): [109395.142, 109487.327] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJni
+# Parameters: (length = 8)
+
+# Run progress: 36.11% complete, ETA 00:25:58
+# Fork: 1 of 1
+# Warmup Iteration   1: 1126.713 ops/ms
+# Warmup Iteration   2: 1129.962 ops/ms
+# Warmup Iteration   3: 1140.484 ops/ms
+# Warmup Iteration   4: 1136.078 ops/ms
+# Warmup Iteration   5: 1138.805 ops/ms
+# Warmup Iteration   6: 1141.091 ops/ms
+# Warmup Iteration   7: 1137.803 ops/ms
+Iteration   1: 1133.316 ops/ms
+Iteration   2: 1140.269 ops/ms
+Iteration   3: 1134.701 ops/ms
+Iteration   4: 1139.662 ops/ms
+Iteration   5: 1133.841 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJni":
+  1136.358 ±(99.9%) 12.849 ops/ms [Average]
+  (min, avg, max) = (1133.316, 1136.358, 1140.269), stdev = 3.337
+  CI (99.9%): [1123.508, 1149.207] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJni
+# Parameters: (length = 16)
+
+# Run progress: 38.89% complete, ETA 00:24:50
+# Fork: 1 of 1
+# Warmup Iteration   1: 433.703 ops/ms
+# Warmup Iteration   2: 440.400 ops/ms
+# Warmup Iteration   3: 440.252 ops/ms
+# Warmup Iteration   4: 435.276 ops/ms
+# Warmup Iteration   5: 431.570 ops/ms
+# Warmup Iteration   6: 439.937 ops/ms
+# Warmup Iteration   7: 440.567 ops/ms
+Iteration   1: 438.790 ops/ms
+Iteration   2: 441.858 ops/ms
+Iteration   3: 441.215 ops/ms
+Iteration   4: 441.573 ops/ms
+Iteration   5: 441.155 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJni":
+  440.918 ±(99.9%) 4.710 ops/ms [Average]
+  (min, avg, max) = (438.790, 440.918, 441.858), stdev = 1.223
+  CI (99.9%): [436.208, 445.628] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJni
+# Parameters: (length = 32)
+
+# Run progress: 41.67% complete, ETA 00:23:42
+# Fork: 1 of 1
+# Warmup Iteration   1: 174.361 ops/ms
+# Warmup Iteration   2: 177.157 ops/ms
+# Warmup Iteration   3: 176.942 ops/ms
+# Warmup Iteration   4: 176.983 ops/ms
+# Warmup Iteration   5: 176.939 ops/ms
+# Warmup Iteration   6: 177.002 ops/ms
+# Warmup Iteration   7: 176.567 ops/ms
+Iteration   1: 176.905 ops/ms
+Iteration   2: 176.783 ops/ms
+Iteration   3: 176.735 ops/ms
+Iteration   4: 176.516 ops/ms
+Iteration   5: 175.748 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJni":
+  176.537 ±(99.9%) 1.783 ops/ms [Average]
+  (min, avg, max) = (175.748, 176.537, 176.905), stdev = 0.463
+  CI (99.9%): [174.755, 178.320] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJni
+# Parameters: (length = 64)
+
+# Run progress: 44.44% complete, ETA 00:22:34
+# Fork: 1 of 1
+# Warmup Iteration   1: 72.946 ops/ms
+# Warmup Iteration   2: 74.288 ops/ms
+# Warmup Iteration   3: 73.748 ops/ms
+# Warmup Iteration   4: 73.721 ops/ms
+# Warmup Iteration   5: 73.756 ops/ms
+# Warmup Iteration   6: 73.224 ops/ms
+# Warmup Iteration   7: 73.881 ops/ms
+Iteration   1: 73.828 ops/ms
+Iteration   2: 73.748 ops/ms
+Iteration   3: 73.734 ops/ms
+Iteration   4: 73.745 ops/ms
+Iteration   5: 73.848 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJni":
+  73.781 ±(99.9%) 0.205 ops/ms [Average]
+  (min, avg, max) = (73.734, 73.781, 73.848), stdev = 0.053
+  CI (99.9%): [73.576, 73.986] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJni
+# Parameters: (length = 128)
+
+# Run progress: 47.22% complete, ETA 00:21:27
+# Fork: 1 of 1
+# Warmup Iteration   1: 30.742 ops/ms
+# Warmup Iteration   2: 31.174 ops/ms
+# Warmup Iteration   3: 31.038 ops/ms
+# Warmup Iteration   4: 31.013 ops/ms
+# Warmup Iteration   5: 31.029 ops/ms
+# Warmup Iteration   6: 31.048 ops/ms
+# Warmup Iteration   7: 31.048 ops/ms
+Iteration   1: 31.034 ops/ms
+Iteration   2: 31.047 ops/ms
+Iteration   3: 30.975 ops/ms
+Iteration   4: 31.018 ops/ms
+Iteration   5: 30.935 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJni":
+  31.002 ±(99.9%) 0.177 ops/ms [Average]
+  (min, avg, max) = (30.935, 31.002, 31.047), stdev = 0.046
+  CI (99.9%): [30.825, 31.179] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnr
+# Parameters: (length = 0)
+
+# Run progress: 50.00% complete, ETA 00:20:19
+# Fork: 1 of 1
+# Warmup Iteration   1: 80420.281 ops/ms
+# Warmup Iteration   2: 81929.583 ops/ms
+# Warmup Iteration   3: 81949.996 ops/ms
+# Warmup Iteration   4: 81627.816 ops/ms
+# Warmup Iteration   5: 81863.384 ops/ms
+# Warmup Iteration   6: 81615.143 ops/ms
+# Warmup Iteration   7: 81889.919 ops/ms
+Iteration   1: 81983.931 ops/ms
+Iteration   2: 81799.702 ops/ms
+Iteration   3: 81896.542 ops/ms
+Iteration   4: 81748.533 ops/ms
+Iteration   5: 81976.327 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnr":
+  81881.007 ±(99.9%) 404.229 ops/ms [Average]
+  (min, avg, max) = (81748.533, 81881.007, 81983.931), stdev = 104.977
+  CI (99.9%): [81476.778, 82285.235] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnr
+# Parameters: (length = 8)
+
+# Run progress: 52.78% complete, ETA 00:19:11
+# Fork: 1 of 1
+# Warmup Iteration   1: 673.283 ops/ms
+# Warmup Iteration   2: 674.867 ops/ms
+# Warmup Iteration   3: 677.793 ops/ms
+# Warmup Iteration   4: 677.920 ops/ms
+# Warmup Iteration   5: 678.195 ops/ms
+# Warmup Iteration   6: 678.542 ops/ms
+# Warmup Iteration   7: 677.599 ops/ms
+Iteration   1: 678.306 ops/ms
+Iteration   2: 678.756 ops/ms
+Iteration   3: 677.943 ops/ms
+Iteration   4: 677.498 ops/ms
+Iteration   5: 678.878 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnr":
+  678.276 ±(99.9%) 2.204 ops/ms [Average]
+  (min, avg, max) = (677.498, 678.276, 678.878), stdev = 0.572
+  CI (99.9%): [676.072, 680.480] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnr
+# Parameters: (length = 16)
+
+# Run progress: 55.56% complete, ETA 00:18:03
+# Fork: 1 of 1
+# Warmup Iteration   1: 259.449 ops/ms
+# Warmup Iteration   2: 267.230 ops/ms
+# Warmup Iteration   3: 259.835 ops/ms
+# Warmup Iteration   4: 262.491 ops/ms
+# Warmup Iteration   5: 261.726 ops/ms
+# Warmup Iteration   6: 259.765 ops/ms
+# Warmup Iteration   7: 258.810 ops/ms
+Iteration   1: 259.559 ops/ms
+Iteration   2: 259.950 ops/ms
+Iteration   3: 258.870 ops/ms
+Iteration   4: 260.056 ops/ms
+Iteration   5: 260.281 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnr":
+  259.743 ±(99.9%) 2.132 ops/ms [Average]
+  (min, avg, max) = (258.870, 259.743, 260.281), stdev = 0.554
+  CI (99.9%): [257.612, 261.875] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnr
+# Parameters: (length = 32)
+
+# Run progress: 58.33% complete, ETA 00:16:56
+# Fork: 1 of 1
+# Warmup Iteration   1: 112.847 ops/ms
+# Warmup Iteration   2: 113.198 ops/ms
+# Warmup Iteration   3: 114.072 ops/ms
+# Warmup Iteration   4: 114.047 ops/ms
+# Warmup Iteration   5: 113.949 ops/ms
+# Warmup Iteration   6: 113.906 ops/ms
+# Warmup Iteration   7: 113.993 ops/ms
+Iteration   1: 114.042 ops/ms
+Iteration   2: 114.052 ops/ms
+Iteration   3: 113.732 ops/ms
+Iteration   4: 113.008 ops/ms
+Iteration   5: 113.518 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnr":
+  113.670 ±(99.9%) 1.667 ops/ms [Average]
+  (min, avg, max) = (113.008, 113.670, 114.052), stdev = 0.433
+  CI (99.9%): [112.004, 115.337] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnr
+# Parameters: (length = 64)
+
+# Run progress: 61.11% complete, ETA 00:15:48
+# Fork: 1 of 1
+# Warmup Iteration   1: 46.864 ops/ms
+# Warmup Iteration   2: 47.038 ops/ms
+# Warmup Iteration   3: 47.161 ops/ms
+# Warmup Iteration   4: 47.150 ops/ms
+# Warmup Iteration   5: 47.229 ops/ms
+# Warmup Iteration   6: 47.153 ops/ms
+# Warmup Iteration   7: 47.127 ops/ms
+Iteration   1: 47.193 ops/ms
+Iteration   2: 47.110 ops/ms
+Iteration   3: 47.045 ops/ms
+Iteration   4: 47.167 ops/ms
+Iteration   5: 47.229 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnr":
+  47.149 ±(99.9%) 0.279 ops/ms [Average]
+  (min, avg, max) = (47.045, 47.149, 47.229), stdev = 0.073
+  CI (99.9%): [46.869, 47.428] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnr
+# Parameters: (length = 128)
+
+# Run progress: 63.89% complete, ETA 00:14:40
+# Fork: 1 of 1
+# Warmup Iteration   1: 20.456 ops/ms
+# Warmup Iteration   2: 20.294 ops/ms
+# Warmup Iteration   3: 20.310 ops/ms
+# Warmup Iteration   4: 20.393 ops/ms
+# Warmup Iteration   5: 20.382 ops/ms
+# Warmup Iteration   6: 20.397 ops/ms
+# Warmup Iteration   7: 20.421 ops/ms
+Iteration   1: 20.304 ops/ms
+Iteration   2: 20.236 ops/ms
+Iteration   3: 20.363 ops/ms
+Iteration   4: 20.332 ops/ms
+Iteration   5: 20.386 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnr":
+  20.324 ±(99.9%) 0.224 ops/ms [Average]
+  (min, avg, max) = (20.236, 20.324, 20.386), stdev = 0.058
+  CI (99.9%): [20.100, 20.549] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnrIgnoreError
+# Parameters: (length = 0)
+
+# Run progress: 66.67% complete, ETA 00:13:32
+# Fork: 1 of 1
+# Warmup Iteration   1: 106614.336 ops/ms
+# Warmup Iteration   2: 109099.529 ops/ms
+# Warmup Iteration   3: 112094.035 ops/ms
+# Warmup Iteration   4: 112055.910 ops/ms
+# Warmup Iteration   5: 112047.272 ops/ms
+# Warmup Iteration   6: 111927.708 ops/ms
+# Warmup Iteration   7: 112081.264 ops/ms
+Iteration   1: 111436.875 ops/ms
+Iteration   2: 112073.631 ops/ms
+Iteration   3: 112037.741 ops/ms
+Iteration   4: 111761.432 ops/ms
+Iteration   5: 112056.746 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnrIgnoreError":
+  111873.285 ±(99.9%) 1061.211 ops/ms [Average]
+  (min, avg, max) = (111436.875, 111873.285, 112073.631), stdev = 275.593
+  CI (99.9%): [110812.074, 112934.496] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnrIgnoreError
+# Parameters: (length = 8)
+
+# Run progress: 69.44% complete, ETA 00:12:25
+# Fork: 1 of 1
+# Warmup Iteration   1: 712.586 ops/ms
+# Warmup Iteration   2: 724.885 ops/ms
+# Warmup Iteration   3: 720.852 ops/ms
+# Warmup Iteration   4: 718.998 ops/ms
+# Warmup Iteration   5: 716.618 ops/ms
+# Warmup Iteration   6: 718.705 ops/ms
+# Warmup Iteration   7: 720.966 ops/ms
+Iteration   1: 721.096 ops/ms
+Iteration   2: 721.317 ops/ms
+Iteration   3: 721.094 ops/ms
+Iteration   4: 717.612 ops/ms
+Iteration   5: 719.184 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnrIgnoreError":
+  720.060 ±(99.9%) 6.234 ops/ms [Average]
+  (min, avg, max) = (717.612, 720.060, 721.317), stdev = 1.619
+  CI (99.9%): [713.827, 726.294] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnrIgnoreError
+# Parameters: (length = 16)
+
+# Run progress: 72.22% complete, ETA 00:11:17
+# Fork: 1 of 1
+# Warmup Iteration   1: 257.103 ops/ms
+# Warmup Iteration   2: 259.229 ops/ms
+# Warmup Iteration   3: 259.850 ops/ms
+# Warmup Iteration   4: 261.344 ops/ms
+# Warmup Iteration   5: 259.656 ops/ms
+# Warmup Iteration   6: 259.468 ops/ms
+# Warmup Iteration   7: 258.477 ops/ms
+Iteration   1: 258.161 ops/ms
+Iteration   2: 260.576 ops/ms
+Iteration   3: 259.412 ops/ms
+Iteration   4: 261.212 ops/ms
+Iteration   5: 260.046 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnrIgnoreError":
+  259.881 ±(99.9%) 4.499 ops/ms [Average]
+  (min, avg, max) = (258.161, 259.881, 261.212), stdev = 1.168
+  CI (99.9%): [255.383, 264.380] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnrIgnoreError
+# Parameters: (length = 32)
+
+# Run progress: 75.00% complete, ETA 00:10:09
+# Fork: 1 of 1
+# Warmup Iteration   1: 102.925 ops/ms
+# Warmup Iteration   2: 103.608 ops/ms
+# Warmup Iteration   3: 103.215 ops/ms
+# Warmup Iteration   4: 103.464 ops/ms
+# Warmup Iteration   5: 103.323 ops/ms
+# Warmup Iteration   6: 103.361 ops/ms
+# Warmup Iteration   7: 102.886 ops/ms
+Iteration   1: 103.259 ops/ms
+Iteration   2: 103.471 ops/ms
+Iteration   3: 102.314 ops/ms
+Iteration   4: 103.415 ops/ms
+Iteration   5: 103.558 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnrIgnoreError":
+  103.203 ±(99.9%) 1.959 ops/ms [Average]
+  (min, avg, max) = (102.314, 103.203, 103.558), stdev = 0.509
+  CI (99.9%): [101.244, 105.163] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnrIgnoreError
+# Parameters: (length = 64)
+
+# Run progress: 77.78% complete, ETA 00:09:01
+# Fork: 1 of 1
+# Warmup Iteration   1: 42.692 ops/ms
+# Warmup Iteration   2: 44.210 ops/ms
+# Warmup Iteration   3: 43.433 ops/ms
+# Warmup Iteration   4: 43.463 ops/ms
+# Warmup Iteration   5: 43.392 ops/ms
+# Warmup Iteration   6: 43.435 ops/ms
+# Warmup Iteration   7: 43.315 ops/ms
+Iteration   1: 43.350 ops/ms
+Iteration   2: 43.455 ops/ms
+Iteration   3: 43.504 ops/ms
+Iteration   4: 43.407 ops/ms
+Iteration   5: 43.282 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnrIgnoreError":
+  43.400 ±(99.9%) 0.335 ops/ms [Average]
+  (min, avg, max) = (43.282, 43.400, 43.504), stdev = 0.087
+  CI (99.9%): [43.065, 43.735] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortJnrIgnoreError
+# Parameters: (length = 128)
+
+# Run progress: 80.56% complete, ETA 00:07:54
+# Fork: 1 of 1
+# Warmup Iteration   1: 19.105 ops/ms
+# Warmup Iteration   2: 19.130 ops/ms
+# Warmup Iteration   3: 19.193 ops/ms
+# Warmup Iteration   4: 19.175 ops/ms
+# Warmup Iteration   5: 19.157 ops/ms
+# Warmup Iteration   6: 19.186 ops/ms
+# Warmup Iteration   7: 19.254 ops/ms
+Iteration   1: 19.227 ops/ms
+Iteration   2: 19.218 ops/ms
+Iteration   3: 19.237 ops/ms
+Iteration   4: 19.229 ops/ms
+Iteration   5: 19.201 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortJnrIgnoreError":
+  19.222 ±(99.9%) 0.053 ops/ms [Average]
+  (min, avg, max) = (19.201, 19.222, 19.237), stdev = 0.014
+  CI (99.9%): [19.169, 19.276] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortPanama
+# Parameters: (length = 0)
+
+# Run progress: 83.33% complete, ETA 00:06:46
+# Fork: 1 of 1
+# Warmup Iteration   1: 111727.828 ops/ms
+# Warmup Iteration   2: 111838.301 ops/ms
+# Warmup Iteration   3: 117642.645 ops/ms
+# Warmup Iteration   4: 117762.703 ops/ms
+# Warmup Iteration   5: 117785.501 ops/ms
+# Warmup Iteration   6: 117857.901 ops/ms
+# Warmup Iteration   7: 117872.031 ops/ms
+Iteration   1: 117853.285 ops/ms
+Iteration   2: 117642.952 ops/ms
+Iteration   3: 117719.108 ops/ms
+Iteration   4: 117646.739 ops/ms
+Iteration   5: 117610.474 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortPanama":
+  117694.512 ±(99.9%) 374.410 ops/ms [Average]
+  (min, avg, max) = (117610.474, 117694.512, 117853.285), stdev = 97.233
+  CI (99.9%): [117320.102, 118068.921] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortPanama
+# Parameters: (length = 8)
+
+# Run progress: 86.11% complete, ETA 00:05:38
+# Fork: 1 of 1
+# Warmup Iteration   1: 4075.618 ops/ms
+# Warmup Iteration   2: 4063.261 ops/ms
+# Warmup Iteration   3: 4085.644 ops/ms
+# Warmup Iteration   4: 4084.431 ops/ms
+# Warmup Iteration   5: 4086.399 ops/ms
+# Warmup Iteration   6: 4082.548 ops/ms
+# Warmup Iteration   7: 4084.501 ops/ms
+Iteration   1: 4086.242 ops/ms
+Iteration   2: 4085.935 ops/ms
+Iteration   3: 4083.852 ops/ms
+Iteration   4: 4086.017 ops/ms
+Iteration   5: 4088.944 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortPanama":
+  4086.198 ±(99.9%) 6.981 ops/ms [Average]
+  (min, avg, max) = (4083.852, 4086.198, 4088.944), stdev = 1.813
+  CI (99.9%): [4079.217, 4093.179] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortPanama
+# Parameters: (length = 16)
+
+# Run progress: 88.89% complete, ETA 00:04:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 1517.681 ops/ms
+# Warmup Iteration   2: 1517.861 ops/ms
+# Warmup Iteration   3: 1519.334 ops/ms
+# Warmup Iteration   4: 1522.292 ops/ms
+# Warmup Iteration   5: 1517.124 ops/ms
+# Warmup Iteration   6: 1519.279 ops/ms
+# Warmup Iteration   7: 1519.826 ops/ms
+Iteration   1: 1522.837 ops/ms
+Iteration   2: 1504.231 ops/ms
+Iteration   3: 1502.407 ops/ms
+Iteration   4: 1503.628 ops/ms
+Iteration   5: 1504.303 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortPanama":
+  1507.481 ±(99.9%) 33.184 ops/ms [Average]
+  (min, avg, max) = (1502.407, 1507.481, 1522.837), stdev = 8.618
+  CI (99.9%): [1474.297, 1540.665] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortPanama
+# Parameters: (length = 32)
+
+# Run progress: 91.67% complete, ETA 00:03:23
+# Fork: 1 of 1
+# Warmup Iteration   1: 645.312 ops/ms
+# Warmup Iteration   2: 634.968 ops/ms
+# Warmup Iteration   3: 637.951 ops/ms
+# Warmup Iteration   4: 639.778 ops/ms
+# Warmup Iteration   5: 641.136 ops/ms
+# Warmup Iteration   6: 641.406 ops/ms
+# Warmup Iteration   7: 640.965 ops/ms
+Iteration   1: 641.311 ops/ms
+Iteration   2: 647.336 ops/ms
+Iteration   3: 647.843 ops/ms
+Iteration   4: 647.028 ops/ms
+Iteration   5: 647.737 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortPanama":
+  646.251 ±(99.9%) 10.707 ops/ms [Average]
+  (min, avg, max) = (641.311, 646.251, 647.843), stdev = 2.781
+  CI (99.9%): [635.544, 656.958] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortPanama
+# Parameters: (length = 64)
+
+# Run progress: 94.44% complete, ETA 00:02:15
+# Fork: 1 of 1
+# Warmup Iteration   1: 279.399 ops/ms
+# Warmup Iteration   2: 279.138 ops/ms
+# Warmup Iteration   3: 279.340 ops/ms
+# Warmup Iteration   4: 278.433 ops/ms
+# Warmup Iteration   5: 278.903 ops/ms
+# Warmup Iteration   6: 278.725 ops/ms
+# Warmup Iteration   7: 278.733 ops/ms
+Iteration   1: 279.870 ops/ms
+Iteration   2: 280.365 ops/ms
+Iteration   3: 280.587 ops/ms
+Iteration   4: 280.774 ops/ms
+Iteration   5: 280.644 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortPanama":
+  280.448 ±(99.9%) 1.368 ops/ms [Average]
+  (min, avg, max) = (279.870, 280.448, 280.774), stdev = 0.355
+  CI (99.9%): [279.081, 281.816] (assumes normal distribution)
+
+
+# JMH version: 1.36
+# VM version: JDK 21-internal, OpenJDK 64-Bit Server VM, 21-internal-adhoc.glavo.panama-foreign-dbddb9e
+# VM invoker: /home/glavo/Downloads/openjdk/panama-foreign-dbddb9e/build/linux-x86_64-server-release/jdk/bin/java
+# VM options: --enable-preview --enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -Dorg.glavo.benchmark.libpath=/home/glavo/Downloads/openjdk/java-ffi-benchmark/src/main/native/cmake-build-release/libffi-benchmark.so
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 7 iterations, 5 s each
+# Measurement: 5 iterations, 5 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.QSortBenchmark.qsortPanama
+# Parameters: (length = 128)
+
+# Run progress: 97.22% complete, ETA 00:01:07
+# Fork: 1 of 1
+# Warmup Iteration   1: 120.605 ops/ms
+# Warmup Iteration   2: 118.982 ops/ms
+# Warmup Iteration   3: 119.375 ops/ms
+# Warmup Iteration   4: 118.076 ops/ms
+# Warmup Iteration   5: 118.048 ops/ms
+# Warmup Iteration   6: 118.055 ops/ms
+# Warmup Iteration   7: 117.951 ops/ms
+Iteration   1: 117.950 ops/ms
+Iteration   2: 121.319 ops/ms
+Iteration   3: 121.375 ops/ms
+Iteration   4: 121.232 ops/ms
+Iteration   5: 121.301 ops/ms
+
+
+Result "benchmark.QSortBenchmark.qsortPanama":
+  120.636 ±(99.9%) 5.783 ops/ms [Average]
+  (min, avg, max) = (117.950, 120.636, 121.375), stdev = 1.502
+  CI (99.9%): [114.852, 126.419] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:40:38
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                           (length)   Mode  Cnt       Score      Error   Units
+QSortBenchmark.qsortJna                    0  thrpt    5    2347.762 ±   10.354  ops/ms
+QSortBenchmark.qsortJna                    8  thrpt    5     136.657 ±    1.483  ops/ms
+QSortBenchmark.qsortJna                   16  thrpt    5      50.465 ±    1.309  ops/ms
+QSortBenchmark.qsortJna                   32  thrpt    5      21.446 ±    0.313  ops/ms
+QSortBenchmark.qsortJna                   64  thrpt    5       9.102 ±    0.087  ops/ms
+QSortBenchmark.qsortJna                  128  thrpt    5       3.897 ±    0.045  ops/ms
+QSortBenchmark.qsortJnaDirect              0  thrpt    5    4960.595 ±   61.548  ops/ms
+QSortBenchmark.qsortJnaDirect              8  thrpt    5     189.484 ±    0.904  ops/ms
+QSortBenchmark.qsortJnaDirect             16  thrpt    5      74.036 ±    0.347  ops/ms
+QSortBenchmark.qsortJnaDirect             32  thrpt    5      30.134 ±    0.128  ops/ms
+QSortBenchmark.qsortJnaDirect             64  thrpt    5      12.798 ±    0.085  ops/ms
+QSortBenchmark.qsortJnaDirect            128  thrpt    5       5.432 ±    0.028  ops/ms
+QSortBenchmark.qsortJni                    0  thrpt    5  109441.234 ±   46.092  ops/ms
+QSortBenchmark.qsortJni                    8  thrpt    5    1136.358 ±   12.849  ops/ms
+QSortBenchmark.qsortJni                   16  thrpt    5     440.918 ±    4.710  ops/ms
+QSortBenchmark.qsortJni                   32  thrpt    5     176.537 ±    1.783  ops/ms
+QSortBenchmark.qsortJni                   64  thrpt    5      73.781 ±    0.205  ops/ms
+QSortBenchmark.qsortJni                  128  thrpt    5      31.002 ±    0.177  ops/ms
+QSortBenchmark.qsortJnr                    0  thrpt    5   81881.007 ±  404.229  ops/ms
+QSortBenchmark.qsortJnr                    8  thrpt    5     678.276 ±    2.204  ops/ms
+QSortBenchmark.qsortJnr                   16  thrpt    5     259.743 ±    2.132  ops/ms
+QSortBenchmark.qsortJnr                   32  thrpt    5     113.670 ±    1.667  ops/ms
+QSortBenchmark.qsortJnr                   64  thrpt    5      47.149 ±    0.279  ops/ms
+QSortBenchmark.qsortJnr                  128  thrpt    5      20.324 ±    0.224  ops/ms
+QSortBenchmark.qsortJnrIgnoreError         0  thrpt    5  111873.285 ± 1061.211  ops/ms
+QSortBenchmark.qsortJnrIgnoreError         8  thrpt    5     720.060 ±    6.234  ops/ms
+QSortBenchmark.qsortJnrIgnoreError        16  thrpt    5     259.881 ±    4.499  ops/ms
+QSortBenchmark.qsortJnrIgnoreError        32  thrpt    5     103.203 ±    1.959  ops/ms
+QSortBenchmark.qsortJnrIgnoreError        64  thrpt    5      43.400 ±    0.335  ops/ms
+QSortBenchmark.qsortJnrIgnoreError       128  thrpt    5      19.222 ±    0.053  ops/ms
+QSortBenchmark.qsortPanama                 0  thrpt    5  117694.512 ±  374.410  ops/ms
+QSortBenchmark.qsortPanama                 8  thrpt    5    4086.198 ±    6.981  ops/ms
+QSortBenchmark.qsortPanama                16  thrpt    5    1507.481 ±   33.184  ops/ms
+QSortBenchmark.qsortPanama                32  thrpt    5     646.251 ±   10.707  ops/ms
+QSortBenchmark.qsortPanama                64  thrpt    5     280.448 ±    1.368  ops/ms
+QSortBenchmark.qsortPanama               128  thrpt    5     120.636 ±    5.783  ops/ms

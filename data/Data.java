@@ -5,11 +5,15 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -22,6 +26,16 @@ public class Data extends Application {
     private static final String JNR_IGNORE_ERROR = "JNR (Ignore Error)";
     private static final String PANAMA = "Panama";
     private static final String PANAMA_TRIVIAL = "Panama (Trivial Call)";
+    private static final String PANAMA_NO_ALLOCATE = "Panama (No Allocate)";
+
+    private static final Color JNI_COLOR = Color.web("#A9A9A9");
+    private static final Color JNA_COLOR = Color.web("#FF4D00");
+    private static final Color JNA_DIRECT_COLOR = Color.web("#FFA07A");
+    private static final Color JNR_COLOR = Color.web("#FFA500");
+    private static final Color JNR_IGNORE_ERROR_COLOR = Color.web("#FFD700");
+    private static final Color PANAMA_COLOR = Color.web("#6640FF");
+    private static final Color PANAMA_TRIVIAL_COLOR = Color.web("#B399FF");
+    private static final Color PANAMA_NO_ALLOCATE_COLOR = Color.web("#B8A1CF");
 
     private static final String THROUGHPUT_LABEL = "Throughput (ops/ms)";
 
@@ -57,6 +71,27 @@ public class Data extends Application {
         return chart;
     }
 
+    private static Color getColor(String name) {
+        return switch (name) {
+            case JNI -> JNI_COLOR;
+            case JNA -> JNA_COLOR;
+            case JNA_DIRECT -> JNA_DIRECT_COLOR;
+            case JNR -> JNR_COLOR;
+            case JNR_IGNORE_ERROR -> JNR_IGNORE_ERROR_COLOR;
+            case PANAMA -> PANAMA_COLOR;
+            case PANAMA_TRIVIAL -> PANAMA_TRIVIAL_COLOR;
+            case PANAMA_NO_ALLOCATE -> PANAMA_NO_ALLOCATE_COLOR;
+            default -> null;
+        };
+    }
+
+    private static String toHexColor(Color color) {
+        int r = (int) Math.round(color.getRed() * 255.0);
+        int g = (int) Math.round(color.getGreen() * 255.0);
+        int b = (int) Math.round(color.getBlue() * 255.0);
+        return String.format("#%02x%02x%02x", r, g, b);
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         List<String> unnamed = getParameters().getUnnamed();
@@ -74,7 +109,7 @@ public class Data extends Application {
         String fileName = getParameters().getNamed().get("save");
         int page = Integer.parseInt(getParameters().getNamed().getOrDefault("page", "0"));
 
-        Chart chart = switch (title) {
+        XYChart<String, Number> chart = switch (title) {
             case "NoopBenchmark" -> {
                 var barChart = newXYChart(title, BarChart::new);
                 barChart.getData().add(series("noop",
@@ -107,7 +142,7 @@ public class Data extends Application {
                     barChart.getData().add(series("getMemUnit",
                             data(JNI, 7489.950),
                             data(PANAMA, 5469.507),
-                            data("Panama (No Allocate)", 7077.384)
+                            data(PANAMA_NO_ALLOCATE, 7077.384)
                     ));
                 }
                 yield barChart;
@@ -185,6 +220,11 @@ public class Data extends Application {
                         for (XYChart.Series<String, Number> series : lineChart.getData()) {
                             series.getData().remove(0, 2);
                         }
+
+                        // reset color
+                        var copy = List.copyOf(lineChart.getData());
+                        lineChart.getData().clear();
+                        lineChart.getData().setAll(copy);
                     }
 
                 } else if (method.equals("passStringToNative")) {
@@ -207,7 +247,6 @@ public class Data extends Application {
                             data(1024, 1651.610),
                             data(4096, 1110.712)
                     );
-
 
                     jnr = series(JNR,
                             data(0, 19713.083),
@@ -250,29 +289,39 @@ public class Data extends Application {
                 lineChart.getXAxis().setLabel("Element Counts");
                 lineChart.getData().setAll(
                         series(JNA,
-                                data(16, 54.354),
-                                data(32, 21.476),
-                                data(64, 9.371)
+                                data(8, 136.657),
+                                data(16, 50.465),
+                                data(32, 21.446),
+                                data(64, 9.102),
+                                data(128, 3.897)
                         ),
                         series(JNA_DIRECT,
-                                data(16, 74.897),
-                                data(32, 30.507),
-                                data(64, 12.634)
+                                data(8, 189.484),
+                                data(16, 74.036),
+                                data(32, 30.134),
+                                data(64, 12.798),
+                                data(128, 5.432)
                         ),
                         series(JNR,
-                                data(16, 267.515),
-                                data(32, 103.865),
-                                data(64, 44.477)
+                                data(8, 678.276),
+                                data(16, 259.743),
+                                data(32, 113.670),
+                                data(64, 47.149),
+                                data(128, 20.324)
                         ),
                         series(JNI,
-                                data(16, 428.445),
-                                data(32, 174.683),
-                                data(64, 71.399)
+                                data(8, 1136.358),
+                                data(16, 440.918),
+                                data(32, 176.537),
+                                data(64, 73.781),
+                                data(128, 31.002)
                         ),
                         series(PANAMA,
-                                data(16, 1607.100),
-                                data(32, 659.764),
-                                data(64, 266.252)
+                                data(8, 4086.198),
+                                data(16, 1507.481),
+                                data(32, 646.251),
+                                data(64, 280.448),
+                                data(128, 120.636)
                         )
                 );
                 yield lineChart;
@@ -284,9 +333,38 @@ public class Data extends Application {
             }
         };
 
+        List<Color> colors = new ArrayList<>();
+        if (chart instanceof LineChart<String, Number>){
+            for (XYChart.Series<?, ?> series : chart.getData()) {
+                colors.add(getColor(series.getName()));
+            }
+        }
+
         Scene scene = new Scene(chart, width, height);
         stage.setScene(scene);
         stage.setTitle(title);
+
+        File tempFile = File.createTempFile("chart-", ".css");
+        tempFile.deleteOnExit();
+        try (BufferedWriter writer = Files.newBufferedWriter(tempFile.toPath())) {
+            int i = 0;
+            for (Color color : colors) {
+                if (color != null) {
+                    writer.write("""
+                                .default-color%1$s.chart-series-line {
+                                    -fx-stroke: %2$s;
+                                }
+                                
+                                .default-color%1$s.chart-line-symbol {
+                                    -fx-background-color: %2$s;
+                                }
+                                
+                                """.formatted(i, toHexColor(color)));
+                }
+                i++;
+            }
+        }
+        scene.getStylesheets().add(tempFile.toURI().toString());
 
         if (fileName != null) {
             WritableImage image = new WritableImage((int) scene.getWidth(), (int) scene.getHeight());
