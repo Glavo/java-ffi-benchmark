@@ -60,10 +60,10 @@ JNIEXPORT jint JNICALL Java_benchmark_SysinfoBenchmark_getMemUnit
 /*
  * Class:     benchmark_QSortBenchmark
  * Method:    qsort
- * Signature: (JJLbenchmark/QSortBenchmark/JniComparator;)V
+ * Signature: (JJ)V
  */
 JNIEXPORT void JNICALL Java_benchmark_QSortBenchmark_qsort
-        (JNIEnv *, jclass, jlong, jlong, jobject);
+        (JNIEnv *, jclass, jlong, jlong);
 
 #ifdef __cplusplus
 }

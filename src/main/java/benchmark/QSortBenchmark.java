@@ -39,12 +39,6 @@ public class QSortBenchmark {
         void ffi_benchmark_qsort(jnr.ffi.Pointer data, long elements, JnrLib.QSortComparator comparator);
     }
 
-    private interface JniComparator {
-        int invoke(long a, long b);
-
-        JniComparator INSTANCE = (a, b) -> Integer.compare(UNSAFE.getInt(a), UNSAFE.getInt(b));
-    }
-
     private static final class JnaDirect {
         public static native void ffi_benchmark_qsort(com.sun.jna.Pointer data, long elements, JnaLib.QSortComparator comparator);
     }
@@ -57,7 +51,11 @@ public class QSortBenchmark {
     private static final JnrLib JNR = Helper.loadJnr(JnrLib.class);
     private static final JnrLib JNR_IGNORE_ERROR = Helper.loadJnrIgnoreError(JnrLib.class);
 
-    private static native void qsort(long address, long elements, JniComparator comparator);
+    private static native void qsort(long address, long elements);
+
+    private static int qsortCompare(long a, long b) {
+        return Integer.compare(UNSAFE.getInt(a), UNSAFE.getInt(b));
+    }
 
     private static int qsortCompare(MemorySegment elem1, MemorySegment elem2) {
         return Integer.compare(elem1.get(JAVA_INT, 0), elem2.get(JAVA_INT, 0));
@@ -122,7 +120,7 @@ public class QSortBenchmark {
 
     @Benchmark
     public void qsortJni() {
-        qsort(address, length, JniComparator.INSTANCE);
+        qsort(address, length);
     }
 
     @Benchmark
