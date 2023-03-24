@@ -101,7 +101,7 @@ However, Java does not support local variables of struct type, so we need to all
 
 ```java
 @Benchmark
-public int getMemUnitPanama() throws Throwable {
+public int getMemUnit() throws Throwable {
     try (Arena arena = Arena.ofConfined()) {
         MemorySegment info = arena.allocate(sysinfoLayout);
         getMemUnit.invokeExact(info);
@@ -172,6 +172,7 @@ JNA and JNR also automatically convert strings.
 For Panama, we need to use the `MemorySegment::getUtf8String` method:
 
 ```java
+@Benchmark
 public String getStringFromNative() throws Throwable {
     return ((MemorySegment) getString.invokeExact(length)).reinterpret(Long.MAX_VALUE).getUtf8String(0);
 }
