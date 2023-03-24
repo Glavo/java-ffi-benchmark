@@ -84,7 +84,7 @@ public class QSortBenchmark {
         }
     }
 
-    @Param({"0", "16", "32", "64"})
+    @Param({"0", "8", "16", "32", "64", "128"})
     long length;
 
     Arena benchmarkArena;
