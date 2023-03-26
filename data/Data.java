@@ -225,6 +225,8 @@ public class Data extends Application {
                         var copy = List.copyOf(lineChart.getData());
                         lineChart.getData().clear();
                         lineChart.getData().setAll(copy);
+                    } else if (page == 2) {
+
                     }
 
                 } else if (method.equals("passStringToNative")) {

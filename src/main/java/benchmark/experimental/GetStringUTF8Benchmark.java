@@ -85,7 +85,7 @@ public class GetStringUTF8Benchmark {
         throw new IllegalArgumentException("String too large");
     }
 
-    private static String getUtf8String(MemorySegment segment) {
+    public static String getUtf8String(MemorySegment segment) {
         long length = segment.byteSize();
         if (segment.address() % SPECIES_LENGTH != 0) { // For simplicity, do not handle these situations
             return segment.getUtf8String(0);

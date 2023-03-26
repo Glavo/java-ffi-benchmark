@@ -1,5 +1,6 @@
 package benchmark;
 
+import benchmark.experimental.GetStringUTF8Benchmark;
 import com.sun.jna.Library;
 import org.openjdk.jmh.annotations.*;
 
@@ -128,6 +129,11 @@ public class StringConvertBenchmark {
     @Benchmark
     public String getStringFromNativePanamaTrivial() throws Throwable {
         return ((MemorySegment) getStringTrivial.invokeExact(length)).reinterpret(Long.MAX_VALUE).getUtf8String(0);
+    }
+
+    @Benchmark
+    public String getStringFromNativePanamaOptimized() throws Throwable {
+        return GetStringUTF8Benchmark.getUtf8String(((MemorySegment) getString.invokeExact(length)).reinterpret(Long.MAX_VALUE));
     }
 
     public static void main(String[] args) throws Throwable {
