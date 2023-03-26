@@ -81,6 +81,7 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
         long start = alignUp(base + offset, byteAlignment) - base;
         MemorySegment slice = segment.asSlice(start, byteSize, byteAlignment);
         offset = start + byteSize;
+        // memset(slice, 0, byteSize);
         return slice;
     }
 }
