@@ -1,17 +1,29 @@
 package benchmark;
 
-import java.lang.foreign.Arena;
-import java.lang.foreign.MemorySegment;
-import java.lang.foreign.SegmentAllocator;
+import sun.misc.Unsafe;
+
+import java.lang.foreign.*;
 import java.lang.ref.Cleaner;
+import java.lang.reflect.Field;
 import java.util.Arrays;
 
 public final class NativeStack implements SegmentAllocator, AutoCloseable {
 
-    private static final int STACK_SIZE = 1024 * 1024;
+    private static final long STACK_SIZE = Long.getLong("stackSize", 1024 * 1024);
 
     private static final ThreadLocal<NativeStack> threadStack = ThreadLocal.withInitial(NativeStack::new);
     private static final Cleaner CLEANER = Cleaner.create();
+    private static final Unsafe UNSAFE;
+
+    static {
+        try {
+            Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
+            theUnsafe.setAccessible(true);
+            UNSAFE = (Unsafe) theUnsafe.get(null);
+        } catch (ReflectiveOperationException ex) {
+            throw new AssertionError(ex);
+        }
+    }
 
     @SuppressWarnings("FieldCanBeLocal")
     private final Arena arena;
@@ -40,7 +52,15 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
         return threadStack.get().push();
     }
 
+    private void checkThread() {
+        if (Thread.currentThread() != thread) {
+            throw new IllegalStateException("Not on the thread of the native stack");
+        }
+    }
+
     public NativeStack push() {
+        checkThread();
+
         if (offsetRecordIndex == offsetRecord.length) {
             offsetRecord = Arrays.copyOf(offsetRecord, offsetRecordIndex * 2);
         }
@@ -51,11 +71,15 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
 
     @Override
     public void close() {
+        checkThread();
+
         if (offsetRecordIndex == 0) {
             throw new IllegalStateException("Stack is empty");
         }
 
-        offset = offsetRecord[--offsetRecordIndex];
+        long prevOffset = offsetRecord[--offsetRecordIndex];
+        // UNSAFE.setMemory(base + prevOffset, offset - prevOffset, (byte) 0);
+        offset = prevOffset;
     }
 
     private static void checkAllocationSizeAndAlign(long byteSize, long byteAlignment) {
@@ -76,12 +100,12 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
 
     @Override
     public MemorySegment allocate(long byteSize, long byteAlignment) {
+        checkThread();
         checkAllocationSizeAndAlign(byteSize, byteAlignment);
 
         long start = alignUp(base + offset, byteAlignment) - base;
         MemorySegment slice = segment.asSlice(start, byteSize, byteAlignment);
         offset = start + byteSize;
-        // memset(slice, 0, byteSize);
         return slice;
     }
 }
