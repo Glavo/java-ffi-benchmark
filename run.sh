@@ -23,6 +23,8 @@ mkdir -p logs
 java_options=(
   --enable-preview
   --enable-native-access=ALL-UNNAMED
+  --add-modules=jdk.incubator.vector
+  --add-opens=java.base/java.lang=ALL-UNNAMED
   --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED
   -Xms4g -Xmx4g
   "-Dorg.glavo.benchmark.libpath=$BENCHMARK_DIR/src/main/native/cmake-build-release/libffi-benchmark.so"

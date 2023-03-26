@@ -1,5 +1,6 @@
 package benchmark;
 
+import benchmark.experimental.NativeStack;
 import com.sun.jna.Library;
 import com.sun.jna.platform.linux.LibC;
 import jnr.ffi.annotations.Out;

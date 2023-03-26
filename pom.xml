@@ -112,6 +112,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
                     <!-- release>${javac.target}</release -->
                     <compilerArgs>
                         <arg>--enable-preview</arg>
+                        <arg>--add-modules=jdk.incubator.vector</arg>
                         <arg>--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED</arg>
                         <arg>-h</arg>
                         <arg>${project.build.directory}/header</arg>

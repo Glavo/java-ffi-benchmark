@@ -1,4 +1,4 @@
-package benchmark;
+package benchmark.experimental;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
