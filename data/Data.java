@@ -27,6 +27,7 @@ public class Data extends Application {
     private static final String PANAMA = "Panama";
     private static final String PANAMA_TRIVIAL = "Panama (Trivial Call)";
     private static final String PANAMA_NO_ALLOCATE = "Panama (No Allocate)";
+    private static final String PANAMA_OPTIMIZED = "Panama (Optimized)";
 
     private static final Color JNI_COLOR = Color.web("#A9A9A9");
     private static final Color JNA_COLOR = Color.web("#FF4D00");
@@ -36,6 +37,7 @@ public class Data extends Application {
     private static final Color PANAMA_COLOR = Color.web("#6640FF");
     private static final Color PANAMA_TRIVIAL_COLOR = Color.web("#B399FF");
     private static final Color PANAMA_NO_ALLOCATE_COLOR = Color.web("#B8A1CF");
+    private static final Color PANAMA_OPTIMIZED_COLOR = Color.web("#8B00FF");
 
     private static final String THROUGHPUT_LABEL = "Throughput (ops/ms)";
 
@@ -81,6 +83,7 @@ public class Data extends Application {
             case PANAMA -> PANAMA_COLOR;
             case PANAMA_TRIVIAL -> PANAMA_TRIVIAL_COLOR;
             case PANAMA_NO_ALLOCATE -> PANAMA_NO_ALLOCATE_COLOR;
+            case PANAMA_OPTIMIZED -> PANAMA_OPTIMIZED_COLOR;
             default -> null;
         };
     }
@@ -220,15 +223,31 @@ public class Data extends Application {
                         for (XYChart.Series<String, Number> series : lineChart.getData()) {
                             series.getData().remove(0, 2);
                         }
-
-                        // reset color
-                        var copy = List.copyOf(lineChart.getData());
-                        lineChart.getData().clear();
-                        lineChart.getData().setAll(copy);
                     } else if (page == 2) {
+                        height = 1260;
 
+                        lineChart.getData().removeIf(it -> it.getName().equals(JNA_DIRECT) || it.getName().equals(PANAMA_TRIVIAL));
+
+                        XYChart.Series<String, Number> panamaOptimized = series(PANAMA_OPTIMIZED,
+                                data(0, 141676.829),
+                                data(16, 86028.119),
+                                data(64, 60415.660),
+                                data(256, 39811.339),
+                                data(1024, 11167.909),
+                                data(4096, 2475.433)
+                        );
+
+                        lineChart.getData().add(panamaOptimized);
+
+                        for (XYChart.Series<String, Number> series : lineChart.getData()) {
+                            series.getData().remove(0, 2);
+                        }
                     }
 
+                    // reset color
+                    var copy = List.copyOf(lineChart.getData());
+                    lineChart.getData().clear();
+                    lineChart.getData().setAll(copy);
                 } else if (method.equals("passStringToNative")) {
                     lineChart.setTitle("StringConvertBenchmark (Java to C)");
 
@@ -336,7 +355,7 @@ public class Data extends Application {
         };
 
         List<Color> colors = new ArrayList<>();
-        if (chart instanceof LineChart<String, Number>){
+        if (chart instanceof LineChart<String, Number>) {
             for (XYChart.Series<?, ?> series : chart.getData()) {
                 colors.add(getColor(series.getName()));
             }
@@ -353,15 +372,15 @@ public class Data extends Application {
             for (Color color : colors) {
                 if (color != null) {
                     writer.write("""
-                                .default-color%1$s.chart-series-line {
-                                    -fx-stroke: %2$s;
-                                }
-                                
-                                .default-color%1$s.chart-line-symbol {
-                                    -fx-background-color: %2$s;
-                                }
-                                
-                                """.formatted(i, toHexColor(color)));
+                            .default-color%1$s.chart-series-line {
+                                -fx-stroke: %2$s;
+                            }
+                                                            
+                            .default-color%1$s.chart-line-symbol {
+                                -fx-background-color: %2$s;
+                            }
+                                                            
+                            """.formatted(i, toHexColor(color)));
                 }
                 i++;
             }
