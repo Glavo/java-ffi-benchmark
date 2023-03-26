@@ -157,6 +157,15 @@ public class SysinfoBenchmark {
         return (int) memUnitHandle.get(info);
     }
 
+    @Benchmark
+    public int getMemUnitPanamaNativeStack() throws Throwable {
+        try (NativeStack stack = NativeStack.pushStack()) {
+            MemorySegment info = stack.allocate(sysinfoLayout);
+            getMemUnit.invokeExact(info);
+            return (int) memUnitHandle.get(info);
+        }
+    }
+
     public static void main(String[] args) throws Throwable {
         var info = new com.sun.jna.platform.linux.LibC.Sysinfo();
         LibC.INSTANCE.sysinfo(info);
