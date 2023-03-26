@@ -78,7 +78,7 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
         }
 
         long prevOffset = offsetRecord[--offsetRecordIndex];
-        // UNSAFE.setMemory(base + prevOffset, offset - prevOffset, (byte) 0);
+        segment.asSlice(prevOffset, offset - prevOffset).fill((byte) 0);
         offset = prevOffset;
     }
 
