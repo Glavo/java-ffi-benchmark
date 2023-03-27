@@ -1,72 +1,88 @@
 package benchmark.experimental;
 
 import java.lang.foreign.*;
-import java.lang.invoke.MethodHandle;
 import java.lang.ref.Cleaner;
+import java.util.ArrayDeque;
 import java.util.Arrays;
 
 public final class NativeStack implements SegmentAllocator, AutoCloseable {
 
-    private static final long STACK_SIZE = Long.getLong("stackSize", 1024 * 1024);
+    private static final long STACK_SIZE = Long.getLong("NativeStack.stackSize", 1024 * 1024);
+    private static final int CACHE_LIMIT = Integer.getInteger("NativeStack.cacheLimit", Integer.max(Runtime.getRuntime().availableProcessors(), 8));
 
-    private static final ThreadLocal<NativeStack> threadStack = ThreadLocal.withInitial(NativeStack::new);
+    private static final ThreadLocal<NativeStack> threadStack = new ThreadLocal<>();
     private static final Cleaner CLEANER = Cleaner.create();
 
-    private static final MethodHandle memset = Linker.nativeLinker().downcallHandle(
-            Linker.nativeLinker().defaultLookup().find("memset").get(),
-            FunctionDescriptor.ofVoid(ValueLayout.ADDRESS, ValueLayout.JAVA_INT, ValueLayout.JAVA_LONG)
-    );
+    /*
+     * Cache native stacks for virtual threads
+     */
+    private static final ArrayDeque<NativeStack> cachePool = new ArrayDeque<>(CACHE_LIMIT);
+    private static final Arena sharedArena = Arena.ofAuto();
 
-    private static void memset(MemorySegment segment, int c, long n) {
-        try {
-            memset.invokeExact(segment, c, n);
-        } catch (Throwable e) {
-            throw new AssertionError(e);
-        }
-    }
-
-
-    @SuppressWarnings("FieldCanBeLocal")
-    private final Arena arena;
-    private final Thread thread;
+    private final boolean shared;
+    private Thread owner;
 
     private final MemorySegment segment;
-    private final long base;
     private long offset = 0L;
-    private long[] offsetRecord = new long[16];
-    private int offsetRecordIndex = 0;
+    private long[] frames = new long[8];
+    private int frameIndex = 0;
 
-    private NativeStack() {
-        arena = Arena.ofConfined();
-        CLEANER.register(this, arena::close);
-
-        thread = Thread.currentThread();
-        segment = arena.allocate(STACK_SIZE);
-        base = segment.address();
+    private NativeStack(Thread owner, MemorySegment segment, boolean shared) {
+        this.owner = owner;
+        this.segment = segment;
+        this.shared = shared;
     }
 
     public static NativeStack getStack() {
-        return threadStack.get();
+        NativeStack stack = threadStack.get();
+        if (stack != null) {
+            return stack;
+        }
+
+        Thread thread = Thread.currentThread();
+        if (thread.isVirtual()) {
+            synchronized (cachePool) {
+                if (cachePool.isEmpty()) {
+                    stack = new NativeStack(thread, sharedArena.allocate(STACK_SIZE), true);
+                } else {
+                    stack = cachePool.removeLast();
+                    stack.changeOwner(thread);
+                }
+            }
+        } else {
+            //noinspection resource
+            Arena arena = Arena.ofConfined();
+            stack = new NativeStack(thread, arena.allocate(STACK_SIZE), false);
+            CLEANER.register(stack, arena::close);
+        }
+
+        threadStack.set(stack);
+        return stack;
     }
 
     public static NativeStack pushStack() {
-        return threadStack.get().push();
+        return getStack().push();
     }
 
     private void checkThread() {
-        if (Thread.currentThread() != thread) {
-            throw new IllegalStateException("Not on the thread of the native stack");
+        if (Thread.currentThread() != owner) {
+            throw new WrongThreadException("Not on the thread of the native stack");
         }
+    }
+
+    private void changeOwner(Thread owner) {
+        assert shared;
+        this.owner = owner;
     }
 
     public NativeStack push() {
         checkThread();
 
-        if (offsetRecordIndex == offsetRecord.length) {
-            offsetRecord = Arrays.copyOf(offsetRecord, offsetRecordIndex * 2);
+        if (frameIndex == frames.length) {
+            frames = Arrays.copyOf(frames, frameIndex * 2);
         }
 
-        offsetRecord[offsetRecordIndex++] = offset;
+        frames[frameIndex++] = offset;
         return this;
     }
 
@@ -74,17 +90,23 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
     public void close() {
         checkThread();
 
-        if (offsetRecordIndex == 0) {
+        int prevIndex = frameIndex - 1;
+        if (prevIndex < 0) {
             throw new IllegalStateException("Stack is empty");
         }
 
-        long prevOffset = offsetRecord[--offsetRecordIndex];
-        // Do we need to clean up?
-        // segment.asSlice(prevOffset, offset - prevOffset).fill((byte) 0);
-        // or
-        // memset(segment.asSlice(prevOffset), 0, offset - prevOffset);
+        offset = frames[prevIndex];
+        frameIndex = prevIndex;
 
-        offset = prevOffset;
+        if (prevIndex == 0 && shared) {
+            threadStack.set(null);
+            this.owner = null;
+            synchronized (cachePool) {
+                if (cachePool.size() < CACHE_LIMIT) {
+                    cachePool.addLast(this);
+                }
+            }
+        }
     }
 
     private static void checkAllocationSizeAndAlign(long byteSize, long byteAlignment) {
@@ -108,7 +130,8 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
         checkThread();
         checkAllocationSizeAndAlign(byteSize, byteAlignment);
 
-        long start = alignUp(base + offset, byteAlignment) - base;
+        long address = segment.address();
+        long start = alignUp(address + offset, byteAlignment) - address;
         MemorySegment slice = segment.asSlice(start, byteSize, byteAlignment);
         offset = start + byteSize;
         return slice;
