@@ -1,10 +1,8 @@
 package benchmark.experimental;
 
-import sun.misc.Unsafe;
-
 import java.lang.foreign.*;
+import java.lang.invoke.MethodHandle;
 import java.lang.ref.Cleaner;
-import java.lang.reflect.Field;
 import java.util.Arrays;
 
 public final class NativeStack implements SegmentAllocator, AutoCloseable {
@@ -13,17 +11,20 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
 
     private static final ThreadLocal<NativeStack> threadStack = ThreadLocal.withInitial(NativeStack::new);
     private static final Cleaner CLEANER = Cleaner.create();
-    private static final Unsafe UNSAFE;
 
-    static {
+    private static final MethodHandle memset = Linker.nativeLinker().downcallHandle(
+            Linker.nativeLinker().defaultLookup().find("memset").get(),
+            FunctionDescriptor.ofVoid(ValueLayout.ADDRESS, ValueLayout.JAVA_INT, ValueLayout.JAVA_LONG)
+    );
+
+    private static void memset(MemorySegment segment, int c, long n) {
         try {
-            Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
-            theUnsafe.setAccessible(true);
-            UNSAFE = (Unsafe) theUnsafe.get(null);
-        } catch (ReflectiveOperationException ex) {
-            throw new AssertionError(ex);
+            memset.invokeExact(segment, c, n);
+        } catch (Throwable e) {
+            throw new AssertionError(e);
         }
     }
+
 
     @SuppressWarnings("FieldCanBeLocal")
     private final Arena arena;
@@ -37,7 +38,7 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
 
     private NativeStack() {
         arena = Arena.ofConfined();
-        CLEANER.register(arena, arena::close);
+        CLEANER.register(this, arena::close);
 
         thread = Thread.currentThread();
         segment = arena.allocate(STACK_SIZE);
@@ -78,7 +79,11 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
         }
 
         long prevOffset = offsetRecord[--offsetRecordIndex];
-        segment.asSlice(prevOffset, offset - prevOffset).fill((byte) 0);
+        // Do we need to clean up?
+        // segment.asSlice(prevOffset, offset - prevOffset).fill((byte) 0);
+        // or
+        // memset(segment.asSlice(prevOffset), 0, offset - prevOffset);
+
         offset = prevOffset;
     }
 

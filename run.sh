@@ -32,9 +32,13 @@ java_options=(
 
 benchmark_options=(
   -tu ms -f 1 -gc true
-  # -wi 5 -w 5 -i 3 -r 3 # short benchmark
-  -wi 7 -w 5 -i 5 -r 5 # full benchmark
 )
+
+if [ "$SHORT_BENCHMARK" == "true" ]; then
+  benchmark_options+=(-wi 5 -w 5 -i 3 -r 3 )
+else
+  benchmark_options+=(-wi 7 -w 5 -i 5 -r 5)
+fi
 
 $JAVA_HOME/bin/java \
   "${java_options[@]}" \
