@@ -161,17 +161,17 @@ public class GetStringUTF8Benchmark {
         segmentNoLimit = null;
     }
 
-    @Benchmark
+    //@Benchmark
     public String panama() {
         return segment.getUtf8String(0);
     }
 
-    @Benchmark
+    //@Benchmark
     public String vector() {
         return getUtf8String(segment);
     }
 
-    @Benchmark
+    //@Benchmark
     public String vectorNoLimit() {
         return getUtf8String(segmentNoLimit);
     }

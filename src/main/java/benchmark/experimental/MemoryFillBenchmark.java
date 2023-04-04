@@ -33,22 +33,22 @@ public class MemoryFillBenchmark {
         segment = null;
     }
 
-    @Benchmark
+    //@Benchmark
     public void fill() {
         segment.fill((byte) 0);
     }
 
-    @Benchmark
+    //@Benchmark
     public void setMemory() {
         UNSAFE.setMemory(segment.address(), length, (byte) 0);
     }
 
-    @Benchmark
+    //@Benchmark
     public void memset() throws Throwable {
         memset.invokeExact(segment, 0, length);
     }
 
-    @Benchmark
+    //@Benchmark
     public void loop() {
         MemorySegment segment = this.segment;
         for (int i = 0; i < length; i++) {
@@ -56,7 +56,7 @@ public class MemoryFillBenchmark {
         }
     }
 
-    @Benchmark
+    //@Benchmark
     public void loopLong() {
         fill(segment, (byte) 0);
     }

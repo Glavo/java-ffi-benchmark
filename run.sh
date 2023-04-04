@@ -40,6 +40,12 @@ else
   benchmark_options+=(-wi 7 -w 5 -i 5 -r 5)
 fi
 
+if [ "$JIT_COMPILER" == "C2" ]; then
+  java_options+=(-XX:TieredStopAtLevel=1)
+elif [ "$JIT_COMPILER" == "NONE" ]; then
+  java_options+=(-Xlint)
+fi
+
 $JAVA_HOME/bin/java \
   "${java_options[@]}" \
   -jar "$BENCHMARK_DIR/target/benchmarks.jar" \

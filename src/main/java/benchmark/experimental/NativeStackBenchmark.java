@@ -11,21 +11,21 @@ public class NativeStackBenchmark {
 
     private final NativeStack threadStack = NativeStack.getStack();
 
-    @Benchmark
+    //@Benchmark
     public void confinedArena() {
         try (Arena arena = Arena.ofConfined()) {
             arena.allocate(32);
         }
     }
 
-    @Benchmark
+    //@Benchmark
     public void nativeStack() {
         try (NativeStack stack = NativeStack.pushStack()) {
             stack.allocate(32);
         }
     }
 
-    @Benchmark
+    //@Benchmark
     public void cachedNativeStack() {
         try (NativeStack stack = threadStack.push()) {
             stack.allocate(32);
