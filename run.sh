@@ -40,7 +40,7 @@ else
   benchmark_options+=(-wi 7 -w 5 -i 5 -r 5)
 fi
 
-if [ "$JIT_COMPILER" == "C2" ]; then
+if [ "$JIT_COMPILER" == "C1" ]; then
   java_options+=(-XX:TieredStopAtLevel=1)
 elif [ "$JIT_COMPILER" == "NONE" ]; then
   java_options+=(-Xlint)
