@@ -43,7 +43,7 @@ fi
 if [ "$JIT_COMPILER" == "C1" ]; then
   java_options+=(-XX:TieredStopAtLevel=1)
 elif [ "$JIT_COMPILER" == "NONE" ]; then
-  java_options+=(-Xlint)
+  java_options+=(-Xint)
 fi
 
 $JAVA_HOME/bin/java \
