@@ -197,6 +197,10 @@ The biggest difference between them maybe that Panama and JNR use loop detection
 while JNA uses the C standard library function `strlen`.
 Perhaps this is the reason why they are so slow.
 
+By optimizing `strlen`, Panama has achieved significant acceleration:
+
+![](./data/StringConvertBenchmark-c2j-optimized.webp)
+
 ## `QSortBenchmark`
 
 This benchmark call the C function `qsort` with a Java method as the comparator. 
