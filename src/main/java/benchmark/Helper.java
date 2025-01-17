@@ -31,15 +31,20 @@
 
 package benchmark;
 
-import com.sun.jna.Native;
-import jnr.ffi.LibraryLoader;
-import jnr.ffi.LibraryOption;
-import sun.misc.Unsafe;
-
-import java.lang.foreign.*;
+import java.lang.foreign.Arena;
+import java.lang.foreign.FunctionDescriptor;
+import java.lang.foreign.Linker;
+import java.lang.foreign.MemorySegment;
+import java.lang.foreign.SymbolLookup;
 import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Field;
 import java.util.Map;
+
+import com.sun.jna.Native;
+
+import jnr.ffi.LibraryLoader;
+import jnr.ffi.LibraryOption;
+import sun.misc.Unsafe;
 
 public class Helper {
 
@@ -59,7 +64,7 @@ public class Helper {
         }
     }
 
-    private static final Linker.Option[] TRIVIAL = {Linker.Option.isTrivial()};
+    private static final Linker.Option[] TRIVIAL = {Linker.Option.critical(true)};
     private static final Linker.Option[] NOT_TRIVIAL = {};
 
     static MethodHandle downcallHandle(String name, FunctionDescriptor fd, boolean trivial) {

@@ -46,6 +46,8 @@ elif [ "$JIT_COMPILER" == "NONE" ]; then
   java_options+=(-Xint)
 fi
 
+set -x
+
 $JAVA_HOME/bin/java \
   "${java_options[@]}" \
   -jar "$BENCHMARK_DIR/target/benchmarks.jar" \
