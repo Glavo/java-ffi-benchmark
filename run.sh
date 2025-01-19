@@ -14,8 +14,7 @@ cd "$BENCHMARK_DIR/src/main/native"
 make
 
 # run
-cd "$BENCHMARK_DIR"
-mkdir -p logs
+mkdir -p "$BENCHMARK_DIR/logs"
 
 java_options=(
   --enable-native-access=ALL-UNNAMED
@@ -40,6 +39,6 @@ set -x
 $JAVA_HOME/bin/java \
   "${java_options[@]}" \
   -jar "$BENCHMARK_DIR/target/benchmarks.jar" \
-  -rf json -rff "$BENCHMARK_DIR/logs/benchmark-$TIMESTAMP.json"
+  -rf json -rff "$BENCHMARK_DIR/logs/benchmark-$TIMESTAMP.json" \
   "${benchmark_options[@]}" "$@" \
   2>&1 | tee "$BENCHMARK_DIR/logs/benchmark-$TIMESTAMP.log"
