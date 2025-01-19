@@ -1,9 +1,10 @@
-package benchmark.experimental;
+package benchmark;
 
 import java.lang.foreign.*;
 import java.lang.ref.Cleaner;
-import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.locks.ReentrantLock;
 
 public final class NativeStack implements SegmentAllocator, AutoCloseable {
 
@@ -16,7 +17,8 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
     /*
      * Cache native stacks for virtual threads
      */
-    private static final ArrayDeque<NativeStack> cachePool = new ArrayDeque<>(CACHE_LIMIT);
+    private static final ReentrantLock cachePoolLock = new ReentrantLock();
+    private static final ArrayList<NativeStack> cachePool = new ArrayList<>(CACHE_LIMIT);
     private static final Arena sharedArena = Arena.ofAuto();
 
     private final boolean shared;
@@ -41,13 +43,16 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
 
         Thread thread = Thread.currentThread();
         if (thread.isVirtual()) {
-            synchronized (cachePool) {
+            cachePoolLock.lock();
+            try {
                 if (cachePool.isEmpty()) {
                     stack = new NativeStack(thread, sharedArena.allocate(STACK_SIZE), true);
                 } else {
                     stack = cachePool.removeLast();
                     stack.changeOwner(thread);
                 }
+            } finally {
+                cachePoolLock.unlock();
             }
         } else {
             //noinspection resource
@@ -101,10 +106,13 @@ public final class NativeStack implements SegmentAllocator, AutoCloseable {
         if (prevIndex == 0 && shared) {
             threadStack.set(null);
             this.owner = null;
-            synchronized (cachePool) {
+            cachePoolLock.lock();
+            try {
                 if (cachePool.size() < CACHE_LIMIT) {
                     cachePool.addLast(this);
                 }
+            } finally {
+                cachePoolLock.unlock();
             }
         }
     }

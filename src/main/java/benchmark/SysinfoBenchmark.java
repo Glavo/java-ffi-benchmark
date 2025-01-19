@@ -18,7 +18,6 @@ import org.openjdk.jmh.annotations.TearDown;
 import com.sun.jna.Library;
 import com.sun.jna.platform.linux.LibC;
 
-import benchmark.experimental.NativeStack;
 import jnr.ffi.annotations.Out;
 
 @State(Scope.Benchmark)
