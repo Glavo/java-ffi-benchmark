@@ -37,32 +37,18 @@ import java.lang.foreign.Linker;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.SymbolLookup;
 import java.lang.invoke.MethodHandle;
-import java.lang.reflect.Field;
 import java.util.Map;
 
 import com.sun.jna.Native;
 
 import jnr.ffi.LibraryLoader;
 import jnr.ffi.LibraryOption;
-import sun.misc.Unsafe;
 
 public class Helper {
 
     private static final String libpath = System.getProperty("org.glavo.benchmark.libpath");
 
-    static final Unsafe UNSAFE;
-
-    static {
-        System.load(libpath);
-
-        try {
-            Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
-            theUnsafe.setAccessible(true);
-            UNSAFE = (Unsafe) theUnsafe.get(null);
-        } catch (Throwable e) {
-            throw new AssertionError(e);
-        }
-    }
+    static final jdk.internal.misc.Unsafe UNSAFE = jdk.internal.misc.Unsafe.getUnsafe();
 
     private static final Linker.Option[] TRIVIAL = {Linker.Option.critical(true)};
     private static final Linker.Option[] NOT_TRIVIAL = {};
