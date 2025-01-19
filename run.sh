@@ -6,7 +6,7 @@ cd "$(dirname $0)"
 BENCHMARK_DIR="$(pwd)"
 
 # Build Java
-mvn clean verify
+./mvnw clean verify
 
 # Build Native
 cd "$BENCHMARK_DIR/src/main/native"
