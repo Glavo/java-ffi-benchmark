@@ -1,15 +1,25 @@
 package benchmark;
 
-import benchmark.experimental.NativeStack;
-import com.sun.jna.Library;
-import com.sun.jna.platform.linux.LibC;
-import jnr.ffi.annotations.Out;
-import org.openjdk.jmh.annotations.*;
-
-import java.lang.foreign.*;
+import java.lang.foreign.Arena;
+import java.lang.foreign.FunctionDescriptor;
+import java.lang.foreign.MemoryLayout;
+import java.lang.foreign.MemorySegment;
+import java.lang.foreign.ValueLayout;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
 import java.util.function.Consumer;
+
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.TearDown;
+
+import com.sun.jna.Library;
+import com.sun.jna.platform.linux.LibC;
+
+import benchmark.experimental.NativeStack;
+import jnr.ffi.annotations.Out;
 
 @State(Scope.Benchmark)
 public class SysinfoBenchmark {
@@ -23,9 +33,9 @@ public class SysinfoBenchmark {
             ValueLayout.JAVA_LONG.withName("bufferram"),
             ValueLayout.JAVA_LONG.withName("totalswap"),
             ValueLayout.JAVA_LONG.withName("freeswap"),
-            ValueLayout.JAVA_SHORT.withName("procs").withBitAlignment(64),
+            ValueLayout.JAVA_SHORT.withName("procs").withByteAlignment(8),
             MemoryLayout.paddingLayout(48),
-            ValueLayout.JAVA_LONG.withName("totalhigh").withBitAlignment(64),
+            ValueLayout.JAVA_LONG.withName("totalhigh").withByteAlignment(8),
             ValueLayout.JAVA_LONG.withName("freehigh"),
             ValueLayout.JAVA_INT.withName("mem_unit"),
             MemoryLayout.paddingLayout(32).withName("_f")

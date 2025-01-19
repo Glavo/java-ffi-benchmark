@@ -2,11 +2,14 @@ package benchmark;
 
 import com.sun.jna.Callback;
 import com.sun.jna.Library;
+
 import jnr.ffi.annotations.Delegate;
+
 import org.openjdk.jmh.annotations.*;
 
 import java.lang.foreign.Arena;
 import java.lang.foreign.FunctionDescriptor;
+import java.lang.foreign.MemoryLayout;
 import java.lang.foreign.MemorySegment;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -14,6 +17,7 @@ import java.lang.invoke.MethodType;
 
 import static benchmark.Helper.UNSAFE;
 import static benchmark.Helper.downcallHandle;
+
 import static java.lang.foreign.ValueLayout.*;
 
 @State(Scope.Benchmark)
@@ -97,7 +101,7 @@ public class QSortBenchmark {
     public void setup() {
         benchmarkArena = Arena.ofConfined();
 
-        segment = benchmarkArena.allocateArray(JAVA_INT, length);
+        segment = benchmarkArena.allocate(MemoryLayout.sequenceLayout(length, JAVA_INT));
         for (int i = 0; i < length; i++) {
             segment.set(JAVA_INT, i * 4L, i);
         }

@@ -1,8 +1,5 @@
 package benchmark.experimental;
 
-import jdk.incubator.vector.*;
-import org.openjdk.jmh.annotations.*;
-
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemoryLayout;
 import java.lang.foreign.MemorySegment;
@@ -13,6 +10,16 @@ import java.lang.invoke.MethodType;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.TearDown;
+
+import jdk.incubator.vector.ByteVector;
+import jdk.incubator.vector.VectorOperators;
+import jdk.incubator.vector.VectorSpecies;
 
 @State(Scope.Benchmark)
 public class GetStringUTF8Benchmark {
@@ -88,7 +95,7 @@ public class GetStringUTF8Benchmark {
     public static String getUtf8String(MemorySegment segment) {
         long length = segment.byteSize();
         if (segment.address() % SPECIES_LENGTH != 0) { // For simplicity, do not handle these situations
-            return segment.getUtf8String(0);
+            return segment.getString(0, StandardCharsets.UTF_8);
         }
 
         int len = strlen(segment, (int) Long.min(length, Integer.MAX_VALUE));
@@ -114,7 +121,7 @@ public class GetStringUTF8Benchmark {
 
         MemorySegment heapSegment = MemorySegment.ofArray(bytes);
         MemorySegment res = arena.allocate(MemoryLayout.sequenceLayout(bytes.length + 1, ValueLayout.JAVA_BYTE)
-                .withBitAlignment((long) SPECIES_LENGTH * Byte.SIZE));
+                .withByteAlignment((long) SPECIES_LENGTH));
 
         if (res.address() % SPECIES_LENGTH != 0) {
             throw new AssertionError();
@@ -163,7 +170,7 @@ public class GetStringUTF8Benchmark {
 
     //@Benchmark
     public String panama() {
-        return segment.getUtf8String(0);
+        return segment.getString(0, StandardCharsets.UTF_8);
     }
 
     //@Benchmark
