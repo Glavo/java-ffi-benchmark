@@ -32,7 +32,7 @@ The original results of all the tests below can be found in the [data](./data) d
 This benchmark calls a C function that has no action.
 
 Result:
-![](./data/NoopBenchmark.webp)
+![](data/2023-03-24/NoopBenchmark.webp)
 
 JNA has a very large overhead for such simple cases, 
 its performance is only about 6.7% of JNI, 
@@ -111,7 +111,7 @@ public int getMemUnitPanama() throws Throwable {
 ```
 
 Result:
-![](./data/SysinfoBenchmark.webp)
+![](data/2023-03-24/SysinfoBenchmark.webp)
 
 JNA is still surprisingly slow, and JNR's performance is less than half that of JNI.
 This is understandable, given the cost of mapping C structs to Java.
@@ -120,7 +120,7 @@ Panama's score is not satisfactory, it has a 15% performance loss compared to JN
 The reason is obvious: allocating memory on the heap consumes some time.
 Here is the result without measuring the memory allocation time:
 
-![](./data/SysinfoBenchmark-no-allocate.webp)
+![](data/2023-03-24/SysinfoBenchmark-no-allocate.webp)
 
 Here is a shortcoming of Panama: more dynamic memory allocation is required because pointers to local variables cannot be obtained.
 
@@ -154,7 +154,7 @@ try (Arena arena = Arena.ofConfined()) {
 ```
 
 Result:
-![](./data/StringConvertBenchmark-j2c.webp)
+![](data/2023-03-24/StringConvertBenchmark-j2c.webp)
 
 JNA is still slow, Panama is still fast.
 
@@ -179,10 +179,10 @@ public String getStringFromNativePanama() throws Throwable {
 ```
 
 Result:
-![](./data/StringConvertBenchmark-c2j.webp)
+![](data/2023-03-24/StringConvertBenchmark-c2j.webp)
 
 Let's focus on strings longer than 64 and see what happens:
-![](./data/StringConvertBenchmark-c2j-detail.webp)
+![](data/2023-03-24/StringConvertBenchmark-c2j-detail.webp)
 
 For small strings, JNA trails JNI, JNR, and Panama by a huge margin, which is to be expected.
 However, for large strings, JNA surprisingly outperforms all competitors.
@@ -199,7 +199,7 @@ Perhaps this is the reason why they are so slow.
 
 By optimizing `strlen`, Panama has achieved significant acceleration:
 
-![](./data/StringConvertBenchmark-c2j-optimized.webp)
+![](data/2023-03-24/StringConvertBenchmark-c2j-optimized.webp)
 
 ## `QSortBenchmark`
 
@@ -267,7 +267,7 @@ For Panama, we generate an upcall stub for the callback function, and then pass 
 Please see the [documentation](https://openjdk.org/jeps/442#Upcalls) for more details.
 
 Result:
-![](./data/QSortBenchmark.webp)
+![](data/2023-03-24/QSortBenchmark.webp)
 
 In this benchmark, the performance of Panama is about 3.5~4 times that of JNI.
 This shows the most advantageous scenario of Panama: calling Java callback function in C.
