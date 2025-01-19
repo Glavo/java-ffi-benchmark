@@ -23,7 +23,6 @@ public class NoopBenchmark {
     }
 
     private static native void noop();
-    private static native void noop_critical();
 
     private static final NativeLib JNA = Helper.loadJna(NativeLib.class);
     private static final NativeLib JNR = Helper.loadJnr(NativeLib.class);
@@ -35,11 +34,6 @@ public class NoopBenchmark {
     @Benchmark
     public void noopJni() {
         noop();
-    }
-
-    // @Benchmark
-    public void noopJniCritical() {
-        noop_critical();
     }
 
     @Benchmark
@@ -77,8 +71,6 @@ public class NoopBenchmark {
 
         System.out.println("=> Running noopJni");
         benchmark.noopJni();
-
-        // benchmark.noopJniCritical();
 
         System.out.println("=> Running noopJna");
         benchmark.noopJna();

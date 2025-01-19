@@ -16,10 +16,6 @@ void JNICALL Java_benchmark_NoopBenchmark_noop(JNIEnv *env, jclass cls) {
     // do nothing
 }
 
-void JNICALL JavaCritical_benchmark_NoopBenchmark_noop_critical() {
-    // do nothing
-}
-
 // ========= string convert =========
 
 void ffi_benchmark_accept_string(const char *str) {
