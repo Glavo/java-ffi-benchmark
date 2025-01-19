@@ -48,6 +48,10 @@ public class Helper {
 
     private static final String libpath = System.getProperty("org.glavo.benchmark.libpath");
 
+    static {
+        System.load(libpath);
+    }
+
     static final jdk.internal.misc.Unsafe UNSAFE = jdk.internal.misc.Unsafe.getUnsafe();
 
     private static final Linker.Option[] TRIVIAL = {Linker.Option.critical(true)};

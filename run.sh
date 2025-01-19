@@ -2,7 +2,7 @@
 
 set -e
 
-cd "$(dirname $0)"
+cd "$(dirname "$0")"
 BENCHMARK_DIR="$(pwd)"
 
 # Build Java
@@ -10,24 +10,18 @@ BENCHMARK_DIR="$(pwd)"
 
 # Build Native
 cd "$BENCHMARK_DIR/src/main/native"
-rm -rf "cmake-build-release"
-mkdir "cmake-build-release"
-cd "cmake-build-release"
-cmake -DCMAKE_BUILD_TYPE=Release ..
-cmake --build .
+make
 
 # run
 cd "$BENCHMARK_DIR"
 mkdir -p logs
 
 java_options=(
-  --enable-preview
   --enable-native-access=ALL-UNNAMED
-  --add-modules=jdk.incubator.vector
   --add-opens=java.base/java.lang=ALL-UNNAMED
   --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED
   -Xms4g -Xmx4g
-  "-Dorg.glavo.benchmark.libpath=$BENCHMARK_DIR/src/main/native/cmake-build-release/libffi-benchmark.so"
+  "-Dorg.glavo.benchmark.libpath=$BENCHMARK_DIR/src/main/native/library.so"
 )
 
 benchmark_options=(
