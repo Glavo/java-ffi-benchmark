@@ -25,7 +25,7 @@ java_options=(
 )
 
 benchmark_options=(
-  -tu ms -f 1 -gc true -wi 5 -w 5 -i 5 -r 5
+  -tu ms -f 1 -wi 5 -w 5 -i 5 -r 5
 )
 
 if [ "$JIT_COMPILER" == "C1" ]; then
