@@ -4,6 +4,7 @@ set -e
 
 cd "$(dirname "$0")"
 BENCHMARK_DIR="$(pwd)"
+TIMESTAMP=$(date '+%F_%H%M%S')
 
 # Build Java
 ./mvnw clean verify
@@ -25,14 +26,8 @@ java_options=(
 )
 
 benchmark_options=(
-  -tu ms -f 1 -gc true
+  -tu ms -f 1 -gc true -wi 5 -w 5 -i 5 -r 5
 )
-
-if [ "$SHORT_BENCHMARK" == "true" ]; then
-  benchmark_options+=(-wi 5 -w 5 -i 3 -r 3 )
-else
-  benchmark_options+=(-wi 7 -w 5 -i 5 -r 5)
-fi
 
 if [ "$JIT_COMPILER" == "C1" ]; then
   java_options+=(-XX:TieredStopAtLevel=1)
@@ -45,5 +40,6 @@ set -x
 $JAVA_HOME/bin/java \
   "${java_options[@]}" \
   -jar "$BENCHMARK_DIR/target/benchmarks.jar" \
+  -rf json -rff "$BENCHMARK_DIR/logs/benchmark-$TIMESTAMP.json"
   "${benchmark_options[@]}" "$@" \
-  2>&1 | tee "$BENCHMARK_DIR/logs/benchmark-$(date '+%F_%H%M%S').log"
+  2>&1 | tee "$BENCHMARK_DIR/logs/benchmark-$TIMESTAMP.log"
